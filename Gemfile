@@ -15,6 +15,8 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 
+gem 'haml-rails'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -43,3 +45,13 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'nokogiri', '1.5.4'
+
+group :development, :test do
+  gem "rb-fsevent", "~> 0.9.1"
+  gem "guard", "1.6.2"
+  gem "guard-rspec", "2.5.1"
+  gem "rspec-rails", "2.13.1"
+  gem "capybara", "2.1.0"
+end
