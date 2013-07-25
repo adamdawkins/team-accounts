@@ -35,7 +35,7 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+  gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -53,5 +53,6 @@ group :development, :test do
   gem "guard", "1.6.2"
   gem "guard-rspec", "2.5.1"
   gem "rspec-rails", "2.13.1"
+  gem "shoulda-matchers", "2.1.0"
   gem "capybara", "2.1.0"
 end
