@@ -23,5 +23,9 @@ describe "Users" do
       expect(page).to have_field 'user[password]'
     end
 
+    it "has a password confirmation field" do
+      expect(page).to have_field 'user[password_confirmation]'
+    end
+
   end
 end
