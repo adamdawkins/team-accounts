@@ -19,5 +19,9 @@ describe "Users" do
       expect(page).to have_field 'user[email]'
     end
 
+    it "has a password field" do
+      expect(page).to have_field 'user[password]'
+    end
+
   end
 end
