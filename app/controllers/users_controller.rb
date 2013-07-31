@@ -10,6 +10,7 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       flash[:error] = 'An error has occured'
+      redirect_to new_user_path
     end
   end
 

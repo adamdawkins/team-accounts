@@ -1,6 +1,10 @@
 %h1 Create user
 
 = form_for @user do |f|
+  - if @user.errors.any?
+    %ul
+      - @user.errors.full_messages.each do |message|
+        %li= message
   = f.text_field :email
   = f.text_field :password
   = f.text_field :password_confirmation
