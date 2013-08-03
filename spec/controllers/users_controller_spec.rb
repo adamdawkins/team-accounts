@@ -22,16 +22,28 @@ describe UsersController do
     context "with valid attributes" do
       it "creates a new user" do 
         expect {
-          post :create, user: {email: "adamdawkins@gmail.com", password: "password", password_confirmation: "password"}
+          post :create, user: FactoryGirl.attributes_for(:user)
         }.to change(User, :count).by(1)
       end
 
       it "re-directs to the new user" do
-          post :create, user: {email: "adamdawkins@gmail.com", password: "password", password_confirmation: "password"}
+          post :create, user: FactoryGirl.attributes_for(:user)
           expect(response).to redirect_to(User.last)
+      end
+    end
+
+    context "with invalid attributes" do 
+      it "does not create a user" do 
+        expect {
+          post :create, user: FactoryGirl.attributes_for(:user, :invalid)
+        }.to_not change(User, :count)
+      end
+
+      it "re-renders the new template" do
+        post :create, user: FactoryGirl.attributes_for(:user, :invalid)
+        expect(response).to redirect_to :new_user
       end
     end
     
   end
-
 end

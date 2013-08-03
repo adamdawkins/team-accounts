@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
 
-  let(:user) { User.new(email: 'adamdawkins@example.com', password: 'password', password_confirmation: 'password') }
+  let(:user) {FactoryGirl.build(:user)}
 
   describe "basic model" do
     before(:each) do 
