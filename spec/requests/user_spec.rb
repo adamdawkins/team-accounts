@@ -70,7 +70,7 @@ describe "Users" do
       end
 
       it "remains on the new user page" do
-        expect(path).to render_template(:new)
+        expect(page.current_path).to eq new_user_path
       end
 
     end
