@@ -70,7 +70,7 @@ describe "Users" do
       end
 
       it "remains on the new user page" do
-        pending
+        expect(path).to render_template(:new)
       end
 
     end
