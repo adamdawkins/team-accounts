@@ -10,12 +10,11 @@ describe "Home Page" do
       end
 
       it "renders" do
-        expect(page.status_code).to be (200)
+        expect(page.status_code).to be 200
       end
 
-      it "displays a login prompt" do
-        pending 'requires users, and more logic'
-        expect(page).to have_selector 'h1', text:'Login'
+      it "redirects to login page" do
+        expect(page.current_path).to eq login_path
       end
 
       it "displays a title" do
