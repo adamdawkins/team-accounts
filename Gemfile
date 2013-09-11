@@ -49,11 +49,12 @@ end
 gem 'nokogiri', '1.5.4'
 
 group :development, :test do
-  gem "rb-fsevent", "~> 0.9.1"
-  gem "guard", "1.6.2"
-  gem "guard-rspec", "2.5.1"
-  gem "rspec-rails", "2.13.1"
-  gem "shoulda-matchers", "2.1.0"
-  gem "capybara", "2.1.0"
-  gem "factory_girl_rails", "~> 4.0" 
+  gem 'rb-fsevent', '~> 0.9.1'
+  gem 'guard', '1.6.2'
+  gem 'guard-rspec', '2.5.1'
+  gem 'rspec-rails', '2.13.1'
+  gem 'shoulda-matchers', '2.1.0'
+  gem 'capybara', '2.1.0'
+  gem 'factory_girl_rails', '~> 4.0' 
+  gem 'database_cleaner', '1.0.1'
 end
