@@ -1,1 +1,8 @@
 %h1 New Transaction
+= form_for @transaction do |f|
+  = f.date_field :date
+  = f.text_field :description
+  = f.number_field :amount
+  = radio_button_tag 'transaction[amount_type]', 'credit'
+  = radio_button_tag 'transaction[amount_type]', 'debit'
+  = f.submit 'Create transaction'
