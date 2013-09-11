@@ -25,13 +25,42 @@ describe Explaination do
       expect(result).to be true
     end
 
-    describe "amount value validation" do 
-      let(:transaction) {FactoryGirl.create(:transaction, amount: 10.00)}
+    describe "#validate" do
+      pending "write the custom validation method to meet these critera"
 
-      it "ensures that amount is not greater in value than the remaining unexplained amount on the transaction"
+    describe "amount value validation" do 
+
+      let(:transaction) {
+        FactoryGirl.create(
+          :transaction_with_explainations,
+           amount: 100.00,
+           explainations_amount: 10.00,
+           explainations_count: 1) 
+      }
+
+      let(:valid_explaination) {
+        FactoryGirl.build(
+        :explaination,
+         amount: 70.00,
+         transaction_id: transaction.id)
+      }
+
+      let(:invalid_explaination) {
+        FactoryGirl.build(
+        :explaination,
+         amount: 90.00,
+         transaction_id: transaction.id)
+      }
+
+      it "ensures that amount is not greater in value than the remaining unexplained amount on the transaction" do
+        pending "these are examples of the validation method acceptance criteria"
+        #expect(valid_explaination).to be_valid
+        #expect(invalid_explaination).to_not be_valid
+      end
 
       it "ensures that the amount has the same orientation (credit or debit) as the transaction amount"
       
+    end
     end
   end
 

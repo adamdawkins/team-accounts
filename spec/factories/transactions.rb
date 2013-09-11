@@ -7,5 +7,18 @@ FactoryGirl.define do
     amount "10.00"
     payment_method "MyString"
     reference "MyString"
+
+    factory :transaction_with_explainations do
+      ignore do
+        explainations_count 2
+        explainations_amount 1.00
+      end
+
+      after(:create) do |transaction, evaluator|
+        FactoryGirl.create_list(:explaination, evaluator.explainations_count, transaction: transaction, amount: evaluator.explainations_amount)
+      end
+
+    end
+     
   end
 end
