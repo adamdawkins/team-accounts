@@ -1,6 +1,8 @@
 TeamBudget::Application.routes.draw do
   post 'sessions' => 'sessions#create'
   get 'sessions/new'
+
+  resources :transactions
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.

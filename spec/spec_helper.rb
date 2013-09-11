@@ -5,6 +5,7 @@ require 'rspec/rails'
 require 'rspec/autorun'
 
 require 'capybara/rspec'
+require 'helpers'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -44,4 +45,7 @@ RSpec.configure do |config|
 
   # Capybara DSL
   config.include Capybara::DSL
+  
+  # Helpers
+  config.include Helpers
 end

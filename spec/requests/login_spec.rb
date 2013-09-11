@@ -24,12 +24,8 @@ describe "Login" do
   describe "POST /sessions" do
     context "valid user credentials" do
 
-      before :each do 
-        user = FactoryGirl.create :user
-        visit login_path
-        fill_in 'email', with: user.email
-        fill_in 'password', with: user.password
-        click_button 'login'
+      before :all do 
+        login
       end
 
       it "redirects to the homepage" do
