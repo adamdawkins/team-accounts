@@ -51,6 +51,12 @@ describe "Users" do
         expect(User.where(email: 'john.smith@example.com').length).to eq(1)
       end
 
+      it "logs the user in" do
+        # assumes root_path re-directs users to login page if not logged in
+        visit root_path
+        expect(page.current_path).to eq root_path
+      end
+
     end
 
     context "submit form with non-matching passwords" do

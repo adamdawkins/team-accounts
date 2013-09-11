@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "transactions/new.html.haml" do
   before :each do
-    login
+    mock_login
     visit new_transaction_path
   end
 

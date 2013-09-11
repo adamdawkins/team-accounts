@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @user = User.new user_params
     if @user.save   
       flash[:notice] = 'Success'
+      login @user.id
       redirect_to @user
     else
       flash[:error] = 'An error has occured'

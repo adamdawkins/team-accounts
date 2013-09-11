@@ -4,7 +4,7 @@ require 'rspec/autorun'
 require 'capybara/rspec'
 
 module Helpers
-  def login
+  def mock_login
     user = FactoryGirl.create(:user)
     visit login_path
     fill_in 'email', with: user.email

@@ -5,7 +5,13 @@
     %ul
       - @user.errors.full_messages.each do |message|
         %li= message
-  = f.text_field :email
-  = f.text_field :password
-  = f.text_field :password_confirmation
+  %div
+    = f.label :email
+    = f.text_field :email
+  %div
+    = f.label :password
+    = f.text_field :password
+  %div
+    = f.label :password_confirmation
+    = f.text_field :password_confirmation
   = f.submit value: 'Create User'

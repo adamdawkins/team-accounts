@@ -6,7 +6,7 @@ describe "Transactions" do
     context "user logged in" do
 
       before :each do 
-        login
+        mock_login
         visit transactions_path
       end
       
@@ -41,7 +41,7 @@ describe "Transactions" do
     context "user logged in" do
 
       before :each do
-        login
+        mock_login
         visit new_transaction_path
       end
 

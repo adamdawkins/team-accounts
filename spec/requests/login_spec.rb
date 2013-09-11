@@ -18,7 +18,7 @@ describe "Login" do
 
     context "user logged in" do
       before :each do
-        login
+        mock_login
         visit login_path
       end
       
@@ -37,7 +37,7 @@ describe "Login" do
     context "valid user credentials" do
 
       before :all do 
-        login
+        mock_login
       end
 
       it "redirects to the homepage" do

@@ -53,4 +53,29 @@ describe ApplicationController do
     end
 
   end
+
+  describe "#login" do
+    context "user not logged in" do
+
+      before :each do
+        session[:user_id] = nil
+        controller.login 1
+      end
+
+      it "sets session[:user_id] to the passed id" do
+        expect(session[:user_id]).to eq 1 
+      end
+    end 
+
+    context "user already logged in" do
+      before :each do
+        session[:user_id] = 1
+      end
+      
+      it "throws an error" do
+         proc{ controller.login(1) }.should raise_error "user already logged in"
+      end
+
+    end
+  end
 end
