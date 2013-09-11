@@ -5,7 +5,7 @@ describe "Login" do
   describe "GET /login" do
 
     context "user not logged in" do 
-      before(:each) do
+      before :all do
         visit login_path
       end
 
@@ -17,7 +17,19 @@ describe "Login" do
     end
 
     context "user logged in" do
-      pending "don't know how to write this request spec"
+      before :each do
+        login
+        visit login_path
+      end
+      
+      it "redirects to the root path" do
+        expect(page.current_path).to eq root_path
+      end
+
+      it "displays a message to the user" do
+        expect(page).to have_content "You are already logged in"
+      end
+
     end
   end
 
