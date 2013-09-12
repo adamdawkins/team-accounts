@@ -32,4 +32,26 @@ describe Transaction do
       it "deletes dependent explainations"
     end
   end
+
+  describe "#unexplained_amount" do 
+    let(:transaction) {
+      FactoryGirl.create(
+        :transaction_with_explainations,
+         amount: 100.00,
+         explainations_amount: 10.00,
+         explainations_count: 2) 
+    }
+    
+   it "returns a float" do
+     expect(transaction.unexplained_amount).to be_kind_of Float
+   end 
+  
+   it "equals the transaction amount, less the total of the explainations" do
+     expect(transaction.unexplained_amount).to eq 80.00
+   end
+
+
+  end
+
+
 end
