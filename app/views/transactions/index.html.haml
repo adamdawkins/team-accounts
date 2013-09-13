@@ -1,0 +1,17 @@
+%table#transactions
+  %thead
+    %tr
+      %th date
+      %th description
+      %th amount
+    
+  %tbody
+    - @transactions.each do |transaction|
+      %tr
+        %td= transaction.date
+        %td= transaction.description
+        %td= transaction.amount
+    
+
+
+= link_to 'Add transaction', new_transaction_path
