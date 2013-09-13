@@ -28,6 +28,47 @@ describe Transaction do
 
   end
 
+
+  describe "#explained_amount" do
+    context "no explainations" do
+      before :all do 
+        @transaction = FactoryGirl.build :transaction
+      end
+
+
+      it "returns a float" do
+        expect(@transaction.explained_amount).to be_kind_of Float
+      end
+
+      it "returns 0.00" do
+        expect(@transaction.explained_amount).to eq 0.00
+      end
+
+    end
+
+    context "with explainations" do
+      before :all do
+        @transaction = FactoryGirl.create :transaction
+        2.times {
+          FactoryGirl.create :explaination,
+          transaction_id: @transaction.id,
+          amount: 10.00
+        }
+      end
+
+      it "returns a float" do 
+        expect(@transaction.explained_amount).to be_kind_of Float
+      end
+      it "returns the sum of the explaination amounts" do 
+        expect(@transaction.explained_amount).to eq 20.00
+      end
+
+    end
+    
+
+
+  end
+
   describe "#unexplained_amount" do 
     before :all do
       @transaction = FactoryGirl.create :transaction, amount: 100.00

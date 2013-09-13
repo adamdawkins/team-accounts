@@ -7,11 +7,14 @@ class Transaction < ActiveRecord::Base
   has_many :explainations, dependent: :destroy
 
   def unexplained_amount
-    if explainations.length > 0
-      ( amount - (explainations.collect(&:amount).reduce :+ )).to_f
-    else
-      amount.to_f
-    end
+    (amount - explained_amount).to_f
+  end
 
+  def explained_amount
+    if explainations.length > 0
+      (explainations.collect(&:amount).reduce :+).to_f
+    else
+      0.00
+    end
   end
 end
