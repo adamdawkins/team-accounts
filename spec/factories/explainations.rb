@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :explaination do
     description "MyString"
-    amount "9.99"
-    transaction_id 1
+    amount 9.99
+    association :transaction, factory: :transaction
   end
 end

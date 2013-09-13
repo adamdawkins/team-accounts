@@ -24,31 +24,38 @@ describe Transaction do
       expect(result).to be true
     end
 
-    it "has many explainations" do
-      expect(transaction).to have_many :explainations
-    end
+    it { should have_many(:explainations).dependent(:destroy) }
 
-    describe "#destroy" do
-      it "deletes dependent explainations"
-    end
   end
 
   describe "#unexplained_amount" do 
-    let(:transaction) {
-      FactoryGirl.create(
-        :transaction_with_explainations,
-         amount: 100.00,
-         explainations_amount: 10.00,
-         explainations_count: 2) 
-    }
-    
-   it "returns a float" do
-     expect(transaction.unexplained_amount).to be_kind_of Float
-   end 
-  
-   it "equals the transaction amount, less the total of the explainations" do
-     expect(transaction.unexplained_amount).to eq 80.00
-   end
+    before :all do
+      @transaction = FactoryGirl.create :transaction, amount: 100.00
+      2.times {
+        FactoryGirl.create :explaination,
+                            transaction_id: @transaction.id,
+                            amount: 10.00
+      }
+    end
+    context "transaction with explainations" do
+      it "returns a float" do
+        expect(@transaction.unexplained_amount).to be_kind_of Float
+      end 
+
+      it "equals the transaction amount, less the total of the explainations" do
+        expect(@transaction.unexplained_amount).to eq 80.00
+      end
+    end
+
+    context "transaction without explainations" do
+      before :all do
+        @transaction = FactoryGirl.create :transaction
+      end
+
+      it "returns the same value as #amount" do
+        expect(@transaction.unexplained_amount).to eq @transaction.amount
+      end
+    end
 
 
   end

@@ -1,7 +1,8 @@
 class Explaination < ActiveRecord::Base
   belongs_to :transaction
 
-  validates_presence_of :description
-  validates_presence_of :amount
-  validates_numericality_of :amount
+  validates :description, presence: true
+  validates :amount, presence: true, numericality: true
+  validates :transaction, presence: true
+ 
 end
