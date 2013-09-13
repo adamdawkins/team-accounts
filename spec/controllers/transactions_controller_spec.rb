@@ -17,4 +17,20 @@ describe TransactionsController do
     end
   end
 
+  describe "#show" do
+    before :each do
+      transaction = FactoryGirl.create :transaction
+      session[:user_id] = FactoryGirl.create(:user).id
+      get 'show', id: transaction.id
+    end
+
+    it "sets the @transaction variable" do 
+      expect(assigns[:transaction]).to_not be_nil
+    end
+
+    it "renders the show template" do
+      expect(response).to render_template 'show'
+    end
+  end
+
 end

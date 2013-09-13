@@ -51,7 +51,35 @@ describe "Transactions" do
       end
 
     end
-
-
   end
+
+  describe "GET /transactions/show/1" do
+    context "user not logged in" do
+
+      it "redirects to the login page" do
+        @transaction = FactoryGirl.create :transaction
+        visit transaction_path @transaction
+        expect(page.current_path).to eq login_path
+      end
+      
+    end
+
+    context  "user logged in" do
+      before :all do
+        mock_login
+        @transaction = FactoryGirl.create :transaction
+      end
+
+      before :each do 
+        visit transaction_path @transaction
+      end
+
+        it "loads the show transaction page" do
+          expect(page.current_path).to eq transaction_path @transaction
+          expect(page.status_code).to eq 200
+        end
+    end
+  end
+
+
 end
