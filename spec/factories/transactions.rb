@@ -5,7 +5,7 @@ FactoryGirl.define do
   factory :transaction do
     description "MyString"
     date "2013-09-11"
-    amount "10.00"
+    amount "100.00"
     payment_method "MyString"
     reference "MyString"
   end
