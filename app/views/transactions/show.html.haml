@@ -1,1 +1,7 @@
-%h1= @transaction.description
+%table
+  %tr
+    %td= @transaction.date
+    %td= @transaction.description
+    %td= @transaction.amount
+
+-# unless @tranasction.explainations.nil?

@@ -9,11 +9,11 @@ describe "Transactions" do
         mock_login
         visit transactions_path
       end
-      
 
-     it "loads the transactions path" do
-       expect(page.current_path).to eq transactions_path
-     end
+
+      it "loads the transactions path" do
+        expect(page.current_path).to eq transactions_path
+      end
 
     end
 
@@ -35,9 +35,9 @@ describe "Transactions" do
         visit new_transaction_path
         expect(page.current_path).to eq login_path
       end
-      
+
     end
-    
+
     context "user logged in" do
 
       before :each do
@@ -53,6 +53,44 @@ describe "Transactions" do
     end
   end
 
+  describe "GET /transactions/new" do
+
+    context "user not logged in" do
+
+      it "redirects to the login page" do
+        visit new_transaction_path
+        expect(page.current_path).to eq login_path
+      end
+
+    end
+
+    context "user logged in" do
+
+      before :each do
+        mock_login
+        visit new_transaction_path
+      end
+
+      it "loads the new transaction page" do
+        expect(page.current_path).to eq new_transaction_path
+        expect(page.status_code).to eq 200
+      end
+
+    end
+  end
+
+  describe "POST /transactions" do
+    context "valid transaction" do 
+      before :each do
+        mock_login
+        transaction = FactoryGirl.build(:transaction)
+        post "/transactions", {transaction: transaction.attributes}
+      end
+
+      it "creates a Transaction and redirects to the transaction page"
+    end
+  end
+
   describe "GET /transactions/show/1" do
     context "user not logged in" do
 
@@ -61,7 +99,7 @@ describe "Transactions" do
         visit transaction_path @transaction
         expect(page.current_path).to eq login_path
       end
-      
+
     end
 
     context  "user logged in" do

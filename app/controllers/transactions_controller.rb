@@ -9,7 +9,21 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new
   end
 
+  def create
+    @transaction = Transaction.new transaction_params
+    if @transaction.save
+      redirect_to @transaction
+    end
+  end
+
   def show
    @transaction = Transaction.find params[:id]
   end
+
+  private
+  
+  def transaction_params
+    params.require(:transaction).permit(:date, :description, :amount, :payment_method, :reference)
+  end
+
 end
