@@ -53,6 +53,7 @@ group :development, :test do
   gem 'guard', '1.6.2'
   gem 'guard-rspec', '2.5.1'
   gem 'rspec-rails', '2.13.1'
+  gem 'fuubar'
   gem 'shoulda-matchers', '2.3.0'
   gem 'capybara', '2.1.0'
   gem 'factory_girl_rails', '~> 4.0' 

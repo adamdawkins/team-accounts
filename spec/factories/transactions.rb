@@ -8,5 +8,9 @@ FactoryGirl.define do
     amount "100.00"
     payment_method "MyString"
     reference "MyString"
+
+    trait :invalid do
+      amount nil
+    end
   end
 end

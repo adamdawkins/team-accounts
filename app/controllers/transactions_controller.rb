@@ -13,6 +13,8 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new transaction_params
     if @transaction.save
       redirect_to @transaction
+    else
+      redirect_to new_transaction_path
     end
   end
 

@@ -4,7 +4,7 @@ describe TransactionsController do
 
   describe "#new" do 
     before :each do
-      session[:user_id] = FactoryGirl.create(:user).id
+      controller.stub! :authenticate_user
       get 'new'
     end
 
@@ -20,7 +20,7 @@ describe TransactionsController do
   describe "#create" do
     context "with valid attributes" do
       before :each do 
-        session[:user_id] = FactoryGirl.create(:user).id
+        controller.stub! :authenticate_user
       end
 
       it "creates a new transaction record in the database" do
@@ -35,12 +35,28 @@ describe TransactionsController do
       end
 
     end
+
+    context "with invalid attributes" do 
+      before :each do
+        controller.stub! :authenticate_user
+      end
+      it "does not create a transaction" do 
+        expect {
+          post :create, transaction: FactoryGirl.attributes_for(:transaction, :invalid)
+        }.to_not change(Transaction, :count)
+      end
+
+      it "re-renders the new template" do
+        post :create, transaction: FactoryGirl.attributes_for(:transaction, :invalid)
+        expect(response).to redirect_to :new_transaction
+      end
+    end
   end
 
   describe "#show" do
     before :each do
       transaction = FactoryGirl.create :transaction
-      session[:user_id] = FactoryGirl.create(:user).id
+      controller.stub! :authenticate_user
       get 'show', id: transaction.id
     end
 
@@ -55,9 +71,8 @@ describe TransactionsController do
 
   describe "#index" do
     before :each do 
-      session[:user_id] = FactoryGirl.create(:user).id
-      random = Random.new
-      random.rand(5..15).times do 
+      controller.stub! :authenticate_user
+      2.times do 
         FactoryGirl.create(:transaction)
       end 
       get 'index'
