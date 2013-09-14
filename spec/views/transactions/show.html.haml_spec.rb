@@ -35,22 +35,18 @@ describe "transactions/show.html.haml" do
 
   context "transaction with explainations" do
     before :each do
+      mock_login
       @transaction = FactoryGirl.create :transaction
       2.times { FactoryGirl.create :explaination, transaction: @transaction }
-      @explainations = @transaction.explainations
-      mock_login
       visit transaction_path @transaction
     end
 
     it "displays an explainations heading" do 
-      pending
       expect(page).to have_content "Explainations"
     end
 
-    context "the transaction has an unexplained amount" do
-      it "displays the new explaination form" 
+    it "displays the explainations" do
+      expect(page).to have_selector "#table_explainations tbody tr", count: @transaction.explainations.length
     end
   end
-  
-
 end

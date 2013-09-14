@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe SessionsController do
 
-  describe "GET #new" do
+  describe "#new" do
 
     context "user not logged in" do
       before(:each) do
@@ -35,7 +35,7 @@ describe SessionsController do
     end
   end
 
-  describe "POST #create" do
+  describe "#create" do
     context "valid user credentials" do
 
       before :each do 
@@ -102,6 +102,22 @@ describe SessionsController do
           "That email address or password is incorrect."
         )
       end
+    end
+
+  end
+
+  describe "#destroy" do
+    before :each do
+      session[:user_id] = 1      
+      delete 'destroy'
+    end
+    
+    it "sets the session[:user_id] to nil" do
+      expect(session[:user_id]).to be_nil
+    end
+
+    it "redirects to the root path" do
+      expect(response).to redirect_to root_path
     end
 
   end

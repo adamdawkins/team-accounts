@@ -5,5 +5,15 @@
     %td= @transaction.display_value
     %td= @transaction.is_credit ? "credit" : "debit"
 
-
--# unless @tranasction.explainations.nil?
+- unless @transaction.explainations.empty?
+  %h2 Explainations
+  %table#table_explainations
+    %thead
+      %tr
+        %td Reason
+        %td Amount
+    %tbody     
+      - @transaction.explainations.each do |explaination|
+        %tr
+          %td= explaination.description
+          %td= explaination.amount
