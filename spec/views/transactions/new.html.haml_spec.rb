@@ -17,11 +17,10 @@ describe "transactions/new.html.haml" do
   it "displays an amount field" do
     expect(page).to have_field "transaction[amount]", type: "number"
   end
-
-  it "displays an amount type radio" do
-    expect(page).to have_field "transaction[amount_type]", type: "radio"
+  
+  it "displays is_credit radio buttons" do
+    expect(page).to have_field "transaction[is_credit]", type: "radio"
   end
-
   it "displays a date field" do
     expect(page).to have_field "transaction[date]"
   end

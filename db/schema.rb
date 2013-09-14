@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20130914114949) do
     t.string   "reference"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "type"
     t.boolean  "is_credit?",     default: true
   end
 
