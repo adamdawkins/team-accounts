@@ -11,7 +11,7 @@
         %td= transaction.date
         %td
           = link_to transaction.description, transaction_path(transaction)
-        %td= transaction.value
+        %td{style: "text-align:right"}= transaction.display_value
     
 
 
