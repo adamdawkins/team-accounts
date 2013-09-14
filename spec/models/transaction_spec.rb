@@ -109,4 +109,17 @@ describe Transaction do
     end
   end
 
+  describe "#value" do 
+    before :all do
+      @transaction = FactoryGirl.build_stubbed :transaction
+    end
+    it "returns the amount formatted to currency" do 
+      expect(@transaction.value).to eq number_to_currency @transaction.amount
+    end
+
+    it "returns the currency in GBP" do 
+      expect(@transaction.value).to include "&pound;"
+    end
+  end
+
 end

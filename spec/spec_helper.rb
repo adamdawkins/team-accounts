@@ -40,6 +40,7 @@ RSpec.configure do |config|
 
   # Helpers
   config.include Helpers
+  config.include ActionView::Helpers::NumberHelper
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction

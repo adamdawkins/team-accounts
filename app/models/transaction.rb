@@ -1,4 +1,6 @@
 class Transaction < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
+
   validates_presence_of :date
   validates_presence_of :description
   validates_presence_of :amount
@@ -16,6 +18,10 @@ class Transaction < ActiveRecord::Base
     else
       0.00
     end
+  end
+
+  def value
+    number_to_currency amount
   end
 
   def to_s
