@@ -9,25 +9,19 @@ describe Transaction do
     let(:transaction) {FactoryGirl.build(:transaction)}
 
     describe "validation" do
-      before(:each) do 
-        transaction.save!
-      end
 
-      it { expect(transaction).to validate_presence_of :date }
-      it { expect(transaction).to validate_presence_of :description }
-      it { expect(transaction).to validate_presence_of :amount }
-      it { expect(transaction).to validate_numericality_of :amount }
+      it { should validate_presence_of :date }
+      it { should validate_presence_of :description }
+      it { should validate_presence_of :amount }
+      it { should validate_presence_of :is_credit? }
+      it { should validate_numericality_of(:amount).is_greater_than 0.00 }
     end
-
-    it "saves attributes" do
-      result = transaction.save
-      expect(result).to be true
-    end
-
+    
+   describe "associations" do 
     it { should have_many(:explainations).dependent(:destroy) }
+   end
 
   end
-
 
   describe "#explained_amount" do
     context "no explainations" do
@@ -113,12 +107,53 @@ describe Transaction do
     before :all do
       @transaction = FactoryGirl.build_stubbed :transaction
     end
-    it "returns the amount formatted to currency" do 
-      expect(@transaction.value).to eq number_to_currency @transaction.amount
+
+    it "returns a float" do 
+      expect(@transaction.value).to be_kind_of Float
+    end
+
+    context "transaction is credit" do
+      before :all do
+        @transaction = FactoryGirl.build_stubbed :transaction, :credit
+      end
+
+      it "returns a positive value" do 
+        expect(@transaction.value).to be > 0.00
+      end
+
+    it "returns the same absolute value as amount" do
+      expect(@transaction.value.abs).to eq @transaction.amount
+    end
+
+    end
+
+    context "transaction is debit" do
+      before :all do
+        @transaction = FactoryGirl.build_stubbed :transaction, :debit
+      end
+
+      it "returns a negative value" do 
+        expect(@transaction.value).to be < 0.00
+      end
+
+      it "returns the same absolute value as amount" do
+        expect(@transaction.value.abs).to eq @transaction.amount
+      end
+
+    end
+  end
+
+  describe "#display_value" do 
+    before :all do
+      @transaction = FactoryGirl.build_stubbed :transaction
+    end
+    
+    it "returns the formatted to currency" do 
+      expect(@transaction.display_value).to eq number_to_currency @transaction.value
     end
 
     it "returns the currency in GBP" do 
-      expect(@transaction.value).to include "&pound;"
+      expect(@transaction.display_value).to include "&pound;"
     end
   end
 
