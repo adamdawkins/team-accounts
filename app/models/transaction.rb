@@ -32,6 +32,14 @@ class Transaction < ActiveRecord::Base
     number_to_currency value
   end
 
+  def explained?
+    if unexplained_amount == 0.00
+      true
+    else
+      false
+    end
+  end
+
   def to_s
     description
   end

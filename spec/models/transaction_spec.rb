@@ -156,4 +156,17 @@ describe Transaction do
     end
   end
 
+  describe "#explained?" do
+      it "returns true when full amount is explained" do
+        @transaction = FactoryGirl.create :transaction, amount: 10.00
+        FactoryGirl.create :explaination, amount: 10.00, transaction_id: @transaction.id
+        expect(@transaction.explained?).to eq true
+      end
+
+      it "returns false when full amount is not explained"  do
+        @transaction = FactoryGirl.create :transaction, amount: 10.00
+        expect(@transaction.explained?).to eq false
+      end
+    end
+
 end
