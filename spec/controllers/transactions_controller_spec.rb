@@ -34,6 +34,11 @@ describe TransactionsController do
           expect(response).to redirect_to(Transaction.last)
       end
 
+      it "sets a success message" do
+        post :create, transaction: FactoryGirl.attributes_for(:transaction)
+        expect(flash[:success]).to eq "Transaction created successfully"
+      end
+
     end
 
     context "with invalid attributes" do 
@@ -49,6 +54,11 @@ describe TransactionsController do
       it "re-renders the new template" do
         post :create, transaction: FactoryGirl.attributes_for(:transaction, :invalid)
         expect(response).to redirect_to :new_transaction
+      end
+
+      it "sets an error message" do
+        post :create, transaction: FactoryGirl.attributes_for(:transaction, :invalid)
+        expect(flash[:alert]).to eq "The transaction was invalid"
       end
     end
   end
