@@ -23,5 +23,17 @@ describe "Home Page" do
 
     end
 
+    context "user logged in" do 
+      before :each do 
+        mock_login
+        visit "/"
+      end
+
+      it "to display a logout link" do
+        expect(page).to have_selector 'a', text: 'Log out'
+      end
+
+    end
+
   end
 end

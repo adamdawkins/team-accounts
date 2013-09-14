@@ -43,6 +43,13 @@
             <%= link_to 'Add user', new_user_path %>
           </li>
         </ul>
+        <% unless current_user.nil? %>
+          <ul class="right">
+            <li>
+              <%= link_to 'Log out', logout_path %>
+            </li>
+          </ul>
+        <% end %>
         </section>
       </nav>
     </header>

@@ -109,7 +109,7 @@ describe SessionsController do
   describe "#destroy" do
     before :each do
       session[:user_id] = 1      
-      delete 'destroy'
+      get 'destroy'
     end
     
     it "sets the session[:user_id] to nil" do
@@ -118,6 +118,10 @@ describe SessionsController do
 
     it "redirects to the root path" do
       expect(response).to redirect_to root_path
+    end
+
+    it "sets a flash message" do 
+      expect(flash[:success]).to eq "You have logged out successfully."
     end
 
   end
