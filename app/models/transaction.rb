@@ -17,4 +17,8 @@ class Transaction < ActiveRecord::Base
       0.00
     end
   end
+
+  def to_s
+    description
+  end
 end

@@ -17,6 +17,11 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem 'haml-rails'
 
+# Use Foundation SCSS Framework
+# See http://foundation.zurb.com
+
+gem 'zurb-foundation'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

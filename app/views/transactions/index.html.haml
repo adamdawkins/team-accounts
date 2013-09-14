@@ -9,9 +9,10 @@
     - @transactions.each do |transaction|
       %tr
         %td= transaction.date
-        %td= transaction.description
+        %td
+          = link_to transaction.description, transaction_path(transaction)
         %td= transaction.amount
     
 
 
-= link_to 'Add transaction', new_transaction_path
+= link_to 'Add transaction', new_transaction_path, class: 'button'

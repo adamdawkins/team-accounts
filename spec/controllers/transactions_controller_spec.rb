@@ -28,7 +28,7 @@ describe TransactionsController do
           post :create, transaction: FactoryGirl.attributes_for(:transaction)
         }.to change(Transaction, :count).by(1)
       end
-      
+
       it "redirects to the show action" do
           post :create, transaction: FactoryGirl.attributes_for(:transaction)
           expect(response).to redirect_to(Transaction.last)

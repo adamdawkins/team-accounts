@@ -97,9 +97,16 @@ describe Transaction do
         expect(@transaction.unexplained_amount).to eq @transaction.amount
       end
     end
-
-
   end
 
+  describe "#to_s" do
+    before :all do
+      @transaction = FactoryGirl.build_stubbed :transaction
+    end
+
+    it "returns the description" do
+      expect(@transaction.to_s).to eq @transaction.description
+    end
+  end
 
 end
