@@ -2,6 +2,8 @@
   %tr
     %td= @transaction.date
     %td= @transaction.description
-    %td= @transaction.value
+    %td= @transaction.display_value
+    %td= @transaction.is_credit ? "credit" : "debit"
+
 
 -# unless @tranasction.explainations.nil?

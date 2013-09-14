@@ -79,20 +79,25 @@ describe "Transactions" do
     end
   end
   
-  # Problem getting these tests to work,
-  # but have good coverage in transaction controller spec
+  describe "POST /transactions" do
+    context "valid transaction" do 
+      before :each do
+        @transaction = FactoryGirl.build :transaction
+        mock_login
+        visit new_transaction_path
+        fill_in 'transaction[date]', with: @transaction.date
+        fill_in 'transaction[amount]', with: @transaction.amount
+        fill_in 'transaction[description]', with: @transaction.description
+        click_button 'Create transaction'
+      end
 
-  #describe "POST /transactions" do
-  #  context "valid transaction" do 
-  #    before :each do
-  #      mock_login
-  #    end
+      it "saves the transaction record" do
+        expect(page.current_path).to_not eq new_transaction_path
+        expect(page).to have_content "Transaction created successfully"
+      end
 
-  #    it "saves the transaction record" do
-  #      pending "this won't show change on Tranasaction.count for some reason"
-  #    end
-  #  end
-  #end
+    end
+  end
 
   describe "GET /transactions/show/1" do
     context "user not logged in" do

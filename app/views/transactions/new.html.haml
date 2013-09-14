@@ -11,9 +11,9 @@
       .large-3.columns
         %label Transaction type
         .switch
-          = f.radio_button :is_credit?, "0", id: "is_credit_debit", checked: "checked"
+          = f.radio_button :is_credit, "0", id: "is_credit_debit", checked: "checked"
           %label{:for => "is_credit_debit", onclick: ""} Debit
-          = f.radio_button :is_credit?, "1", id: "is_credit_credit"
+          = f.radio_button :is_credit, "1", id: "is_credit_credit"
           %label{:for => "is_credit_credit", onclick: ""} Credit
           %span
       .large-3.columns

@@ -8,18 +8,18 @@ FactoryGirl.define do
     amount "100.00"
     payment_method "MyString"
     reference "MyString"
-    is_credit? true
+    is_credit true
 
     trait :invalid do
       amount nil
     end
 
     trait :credit do
-      is_credit? true
+      is_credit true
     end
 
     trait :debit do
-      is_credit? false
+      is_credit false
     end
   end
 end

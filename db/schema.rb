@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130914114949) do
+ActiveRecord::Schema.define(version: 20130914180153) do
 
   create_table "explainations", force: true do |t|
     t.string   "description"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20130914114949) do
     t.string   "reference"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_credit?",     default: true
+    t.boolean  "is_credit"
   end
 
   create_table "users", force: true do |t|

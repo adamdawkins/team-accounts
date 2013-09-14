@@ -39,6 +39,13 @@ describe TransactionsController do
         expect(flash[:success]).to eq "Transaction created successfully"
       end
 
+      context "debit transaction" do
+        it "should save with #is_credit set to false" do
+          post :create, transaction: FactoryGirl.attributes_for(:transaction, :debit)
+          expect(Transaction.last.is_credit).to eq false
+        end
+      end
+
     end
 
     context "with invalid attributes" do 

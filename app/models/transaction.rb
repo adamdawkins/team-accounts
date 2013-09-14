@@ -5,7 +5,6 @@ class Transaction < ActiveRecord::Base
   validates_presence_of :description
   validates_presence_of :amount
   validates :amount, numericality: {greater_than: 0.00}
-  validates_presence_of :is_credit?
 
   has_many :explainations, dependent: :destroy
 
@@ -22,7 +21,7 @@ class Transaction < ActiveRecord::Base
   end
 
   def value
-    if self.is_credit?
+    if self.is_credit
       amount.to_f
     else 
       amount.to_f * -1
