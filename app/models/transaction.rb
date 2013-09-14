@@ -33,11 +33,7 @@ class Transaction < ActiveRecord::Base
   end
 
   def explained?
-    if unexplained_amount == 0.00
-      true
-    else
-      false
-    end
+    unexplained_amount == 0.00
   end
 
   def to_s

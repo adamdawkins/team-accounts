@@ -5,6 +5,16 @@
     %td= @transaction.display_value
     %td= @transaction.is_credit ? "credit" : "debit"
 
+- if @transaction.explained?
+  .panel
+    Transaction explained
+- else
+  .panel
+    = "Unexplained: #{number_to_currency(@transaction.unexplained_amount)}"
+    %form#new_explaination_form
+      TODO: add this form
+    
+
 - unless @transaction.explainations.empty?
   %h2 Explainations
   %table#table_explainations
@@ -17,3 +27,4 @@
         %tr
           %td= explaination.description
           %td= explaination.amount
+
