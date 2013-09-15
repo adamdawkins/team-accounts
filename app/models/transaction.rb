@@ -36,6 +36,16 @@ class Transaction < ActiveRecord::Base
     unexplained_amount == 0.00
   end
 
+  def label
+    if explainations.length > 1
+      'split transaction'
+    elsif explainations.length == 1
+      explainations.first.description
+    else
+      description 
+    end
+  end
+
   def to_s
     description
   end

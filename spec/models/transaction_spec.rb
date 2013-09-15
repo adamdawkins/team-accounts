@@ -157,16 +157,46 @@ describe Transaction do
   end
 
   describe "#explained?" do
-      it "returns true when full amount is explained" do
-        @transaction = FactoryGirl.create :transaction, amount: 10.00
-        FactoryGirl.create :explaination, amount: 10.00, transaction_id: @transaction.id
-        expect(@transaction.explained?).to eq true
-      end
+    it "returns true when full amount is explained" do
+      @transaction = FactoryGirl.create :transaction, amount: 10.00
+      FactoryGirl.create :explaination, amount: 10.00, transaction_id: @transaction.id
+      expect(@transaction.explained?).to eq true
+    end
 
-      it "returns false when full amount is not explained"  do
-        @transaction = FactoryGirl.create :transaction, amount: 10.00
-        expect(@transaction.explained?).to eq false
+    it "returns false when full amount is not explained"  do
+      @transaction = FactoryGirl.create :transaction, amount: 10.00
+      expect(@transaction.explained?).to eq false
+    end
+  end
+
+  describe "#label" do 
+    context "no explainations" do
+      it "returns the transaction description" do
+        transaction = FactoryGirl.build_stubbed :transaction
+        expect(transaction.label).to eq transaction.description 
       end
     end
+
+    context "multiple explainations" do 
+      it "returns 'split transaction'" do
+        transaction = FactoryGirl.create :transaction
+        2.times do
+          FactoryGirl.create :explaination, transaction_id: transaction.id
+        end
+
+        expect(transaction.label).to eq 'split transaction'
+      end
+    end
+
+    context "one explaination" do 
+      it "returns the explaination description" do 
+        transaction = FactoryGirl.create :transaction
+        explaination = FactoryGirl.create :explaination, transaction_id: transaction.id, description: "explaination description"
+
+        expect(transaction.label).to eq explaination.description
+
+      end
+    end
+  end
 
 end

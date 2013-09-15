@@ -10,7 +10,7 @@
       %tr
         %td= transaction.date
         %td
-          = link_to transaction.description, transaction_path(transaction)
+          = link_to transaction.label, transaction_path(transaction)
         %td{style: "text-align:right"}= transaction.display_value
     
 
