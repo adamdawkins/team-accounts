@@ -1,0 +1,14 @@
+%h2 Add explaination
+
+= form_for explaination do |f|
+  = f.hidden_field :transaction_id
+  %div
+    = f.label :description
+    = f.text_field :description
+  %div
+    .large-3.columns
+      = f.label :amount
+      = f.number_field :amount
+
+  .large-12.columns
+    = f.submit 'Add explaination', class: 'button'
