@@ -1,8 +1,11 @@
 .large-centered.large-4.columns
   %h1 Login
   = form_tag :sessions do
-    %label Email
-    = text_field_tag :email
-    %label Password
-    = password_field_tag :password
-    = button_tag 'login', class: "large button expand"
+    %fieldset
+      .row
+        %label Email
+        = text_field_tag :email
+      .row
+        %label Password
+        = password_field_tag :password
+        = button_tag 'login', class: "large button expand"

@@ -1,28 +1,30 @@
-%table
-  %tr
-    %td= @transaction.date
-    %td= @transaction.description
-    %td= @transaction.display_value
-    %td= @transaction.is_credit ? "credit" : "debit"
+.row
+  %h1 View transaction
+  %table
+    %tr
+      %td= @transaction.date
+      %td= @transaction.description
+      %td= @transaction.display_value
+      %td= @transaction.is_credit ? "credit" : "debit"
 
-- if @transaction.explained?
-  .panel
-    Transaction explained
-- else
-  .panel
-    = "Unexplained: #{number_to_currency(@transaction.unexplained_amount)}"
+  - if @transaction.explained?
+    .panel
+      Transaction explained
+  - else
+    .panel.callout
+      != "#{number_to_currency(@transaction.unexplained_amount)} of this transaction is unexplained"
     = render partial: 'explainations/form', locals: { explaination: Explaination.new, transaction: @transaction}
 
-- unless @transaction.explainations.empty?
-  %h2 Explainations
-  %table#table_explainations
-    %thead
-      %tr
-        %td Reason
-        %td Amount
-    %tbody     
-      - @transaction.explainations.each do |explaination|
+  - unless @transaction.explainations.empty?
+    %h2 Explainations
+    %table#table_explainations
+      %thead
         %tr
-          %td= explaination.description
-          %td= explaination.amount
+          %td Reason
+          %td Amount
+      %tbody     
+        - @transaction.explainations.each do |explaination|
+          %tr
+            %td= explaination.description
+            %td= explaination.amount
 

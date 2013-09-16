@@ -1,18 +1,19 @@
-%table#transactions
-  %thead
-    %tr
-      %th date
-      %th description
-      %th amount
-    
-  %tbody
-    - @transactions.each do |transaction|
+.row
+  %table#transactions
+    %thead
       %tr
-        %td= transaction.date
-        %td
-          = link_to transaction.label, transaction_path(transaction)
-        %td{style: "text-align:right"}= transaction.display_value
-    
+        %th date
+        %th description
+        %th amount
+      
+    %tbody
+      - @transactions.each do |transaction|
+        %tr
+          %td= transaction.date
+          %td
+            = link_to transaction.label, transaction_path(transaction)
+          %td{style: "text-align:right"}= transaction.display_value
+      
 
 
-= link_to 'Add transaction', new_transaction_path, class: 'button'
+  = link_to 'Add transaction', new_transaction_path, class: 'button'

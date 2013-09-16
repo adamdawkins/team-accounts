@@ -1,14 +1,23 @@
-%h2 Add explaination
+.row
+  %h2 Add explaination
 
-= form_for explaination, html: { id: "new_explaination_form" } do |f|
-  = hidden_field :explaination, :transaction_id, value: transaction.id
-  %div
-    = f.label :description
-    = f.text_field :description
-  %div
-    .large-3.columns
-      = f.label :amount
-      = f.number_field :amount
+  = form_for explaination, html: { id: "new_explaination_form" } do |f|
+    %fieldset
+      = hidden_field :explaination, :transaction_id, value: transaction.id
+      .row
+        .large-8.columns
+          = f.label :description
+          = f.text_field :description
+      .row
+        .large-2.columns
+          .row.collapse
+            = f.label :amount
+            .small-3.columns
+              %span.prefix &pound;
+            .small-9.columns
+              = f.number_field :amount, 
+                value: number_with_precision(transaction.unexplained_amount,
+                                             precision: 2)
 
-  .large-12.columns
-    = f.submit 'Add explaination', class: 'button'
+      .large-12.columns
+        = f.submit 'Add explaination', class: 'button'

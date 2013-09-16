@@ -59,7 +59,7 @@ describe "transactions/show.html.haml" do
     end
     
     it "displays the unexplained amount" do
-      expect(page).to have_content "Unexplained:"
+      expect(page).to have_content "unexplained"
     end 
 
     it "displays the new explaination form" do
