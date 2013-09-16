@@ -12,3 +12,9 @@
  *= require foundation_and_overrides
  *= require_tree .
  */
+
+.main {
+  position: relative;
+  padding-top: 50px;
+}
+

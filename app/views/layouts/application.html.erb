@@ -1,66 +1,70 @@
 <!DOCTYPE html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
-  <head>
-    <meta charset="utf-8" />
+  <!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+    <!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+      <!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+        <head>
+          <meta charset="utf-8" />
 
-    <!-- Uncomment to make IE8 render like IE7 -->
-    <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+          <!-- Uncomment to make IE8 render like IE7 -->
+          <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
 
-    <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <!-- Set the viewport width to device width for mobile -->
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+          <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
 
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "vendor/custom.modernizr" %>
-    <%= csrf_meta_tags %>
-  </head>
+          <%= stylesheet_link_tag    "application" %>
+          <%= javascript_include_tag "vendor/custom.modernizr" %>
+          <%= csrf_meta_tags %>
+        </head>
 
-  <body>
-    <header>
-      <nav class="top-bar">
-        <ul class="title-area">
-          <li class="name">
-            <h1 id="title"><a href="/">Team Budget</a></h1>
-          </li>
-          <li class="toggle-topbar"></li>
-        </ul>
-        <section class="top-bar-section">
-        <ul class="left">
-          <li class="divider"></li>
-          <li>
-            <%= link_to 'Transactions', transactions_path %>
-          </li>
-          <li>
-            <%= link_to 'Add transaction', new_transaction_path %>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <%= link_to 'Add user', new_user_path %>
-          </li>
-        </ul>
-        <% unless current_user.nil? %>
-          <ul class="right">
-            <li>
-              <%= link_to 'Log out', logout_path %>
+        <body>
+          <header>
+          <nav class="top-bar">
+          <ul class="title-area">
+            <li class="name">
+              <h1 id="title"><a href="/">Team Budget</a></h1>
+            </li>
+            <li class="toggle-topbar menu-icon">
+              <a href="#"><span></span></a>
             </li>
           </ul>
-        <% end %>
-        </section>
-      </nav>
-    </header>
-    <section class="main">
-    <% flash.each do |name, message| %>
-      <%= content_tag :div, message, class: "alert-box #{name}" %>
-    <% end %>
-  
+          <section class="top-bar-section">
+          <ul class="left">
+            <li class="divider"></li>
+            <li>
+              <%= link_to 'Transactions', transactions_path %>
+            </li>
+            <li>
+              <%= link_to 'Add transaction', new_transaction_path %>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <%= link_to 'Add user', new_user_path %>
+            </li>
+          </ul>
+          <% unless current_user.nil? %>
+            <ul class="right">
+              <li>
+                <%= link_to 'Log out', logout_path %>
+              </li>
+            </ul>
+          <% end %>
+          </section>
+          </nav>
+          </header>
+          <section class="main">
+          <% flash.each do |name, message| %>
+            <div class="flash alert-box <%= name %>" data-alert>
+              <%= message %>
+              <a href="#" class="close">&times;</a>
+            </div>
+          <% end %>
 
-    <%= yield %>
-    </section>
-    <%= javascript_include_tag "application" %>
-  </body>
-</html>
+            <%= yield %>
+            </section>
+            <%= javascript_include_tag "application" %>
+          </body>
+        </html>

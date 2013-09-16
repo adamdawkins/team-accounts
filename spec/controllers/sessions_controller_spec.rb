@@ -53,8 +53,8 @@ describe SessionsController do
         expect(response).to redirect_to root_path
       end
 
-      it "sets a flash notice"  do
-        expect(flash[:notice]).to eq "You have logged in successfully."
+      it "sets a flash message"  do
+        expect(flash[:success]).to eq "You have logged in successfully."
       end
 
     end
@@ -75,7 +75,7 @@ describe SessionsController do
       end
 
       it "creates an error message in the flash" do
-        expect(flash[:alert]).to eq(
+        expect(flash[:error]).to eq(
           "That email address or password is incorrect."
         )
       end
@@ -98,7 +98,7 @@ describe SessionsController do
       end
 
       it "creates an error message in the flash" do
-        expect(flash[:alert]).to eq "That email address or password is incorrect."
+        expect(flash[:error]).to eq "That email address or password is incorrect."
       end
     end
 
