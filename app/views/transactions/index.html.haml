@@ -5,6 +5,7 @@
         %th date
         %th description
         %th amount
+        %th status
       
     %tbody
       - @transactions.each do |transaction|
@@ -13,7 +14,9 @@
           %td
             = link_to transaction.label, transaction_path(transaction)
           %td{style: "text-align:right"}= transaction.display_value
-      
-
-
+          %td 
+            - if transaction.explained?
+              %span.success.label explained
+            - else
+              %span.alert.label unexplained
   = link_to 'Add transaction', new_transaction_path, class: 'button'

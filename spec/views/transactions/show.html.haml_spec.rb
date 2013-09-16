@@ -76,7 +76,7 @@ describe "transactions/show.html.haml" do
     end
 
     it "displays text saying transaction is explained" do
-      expect(page).to have_content "Transaction explained"
+      expect(page).to have_selector "span.label", text: "explained"
     end
 
     it "does not display the new explaination form" do

@@ -3,15 +3,17 @@
   %table
     %tr
       %td= @transaction.date
-      %td= @transaction.description
+      %td= @transaction.label
       %td= @transaction.display_value
       %td= @transaction.is_credit ? "credit" : "debit"
+      %td 
+        - if @transaction.explained?
+          %span.success.label explained
+        - else
+          %span.alert.label unexplained
 
-  - if @transaction.explained?
+  - unless @transaction.explained?
     .panel
-      Transaction explained
-  - else
-    .panel.callout
       != "#{number_to_currency(@transaction.unexplained_amount)} of this transaction is unexplained"
     = render partial: 'explainations/form', locals: { explaination: Explaination.new, transaction: @transaction}
 
@@ -26,5 +28,5 @@
         - @transaction.explainations.each do |explaination|
           %tr
             %td= explaination.description
-            %td= explaination.amount
+            %td!= number_to_currency explaination.amount
 
