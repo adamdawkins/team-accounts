@@ -3,9 +3,9 @@ require "spec_helper"
 describe "explainations/_form" do
   before :each do
     transaction = FactoryGirl.create :transaction
-    explaination = transaction.explainations.build
 
-    render partial: "explainations/form.html.haml", locals: {explaination: explaination}
+
+    render partial: "explainations/form.html.haml", locals: {explaination: Explaination.new, transaction: transaction}
   end
 
   it "displays a description field" do

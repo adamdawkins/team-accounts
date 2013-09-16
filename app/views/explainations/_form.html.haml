@@ -1,7 +1,7 @@
 %h2 Add explaination
 
-= form_for explaination do |f|
-  = f.hidden_field :transaction_id
+= form_for explaination, html: { id: "new_explaination_form" } do |f|
+  = hidden_field :explaination, :transaction_id, value: transaction.id
   %div
     = f.label :description
     = f.text_field :description

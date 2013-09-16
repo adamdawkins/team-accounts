@@ -11,9 +11,7 @@
 - else
   .panel
     = "Unexplained: #{number_to_currency(@transaction.unexplained_amount)}"
-    %form#new_explaination_form
-      TODO: add this form
-    
+    = render partial: 'explainations/form', locals: { explaination: Explaination.new, transaction: @transaction}
 
 - unless @transaction.explainations.empty?
   %h2 Explainations

@@ -29,7 +29,7 @@ describe "transactions/show.html.haml" do
     end
 
     it "doesn't display an explainations heading" do
-      expect(page).to_not have_content "Explainations"
+      expect(page).to_not have_selector "h2", text: "Explainations"
     end
   end
 
