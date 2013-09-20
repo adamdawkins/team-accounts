@@ -5,8 +5,11 @@ FactoryGirl.define do
     description "MyString"
     amount 1.00
     association :transaction, factory: :transaction
+    association :category, factory: :category
+
     trait :invalid do
       amount nil
     end
+
   end
 end

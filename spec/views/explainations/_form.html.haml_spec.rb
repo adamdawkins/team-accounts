@@ -22,4 +22,9 @@ describe "explainations/_form" do
   it "displays an 'Add explaination' button" do 
     expect(response).to include "button"
   end
+
+  it "displays a category dropdown" do 
+    pending
+    expect(response).to include "explaination[category_id]"
+  end
 end

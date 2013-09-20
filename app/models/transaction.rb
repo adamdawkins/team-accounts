@@ -7,6 +7,7 @@ class Transaction < ActiveRecord::Base
   validates :amount, numericality: {greater_than: 0.00}
 
   has_many :explainations, dependent: :destroy
+  has_many :categories, through: :explainations
 
   def unexplained_amount
     (amount - explained_amount).to_f

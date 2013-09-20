@@ -18,6 +18,7 @@ describe Transaction do
     
    describe "associations" do 
     it { should have_many(:explainations).dependent(:destroy) }
+    it { should have_many(:categories).through(:explainations) }
    end
 
   end
