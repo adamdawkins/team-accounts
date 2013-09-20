@@ -1,11 +1,13 @@
 class Explaination < ActiveRecord::Base
-  belongs_to :transaction
 
   validates :description, presence: true
   validates :transaction, presence: true
+  validates :category, presence: true
   validates :amount, presence: true, numericality: { greater_than: 0.00 }
   validate  :amount_value
 
+  belongs_to :transaction
+  belongs_to :category
 
   private
 
