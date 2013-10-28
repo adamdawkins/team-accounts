@@ -22,7 +22,6 @@ class TransactionsController < ApplicationController
 
   def show
    @transaction = Transaction.find params[:id]
-   puts "*** #{@transaction.explainations.length} ***"
   end
 
   private
