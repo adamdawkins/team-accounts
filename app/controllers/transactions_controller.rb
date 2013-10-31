@@ -24,6 +24,11 @@ class TransactionsController < ApplicationController
    @transaction = Transaction.find params[:id]
   end
 
+  def import
+    Transaction.import params[:file]
+    redirect_to transactions_path, notice: "Transactions imported successfully"
+  end
+
   private
   
   def transaction_params

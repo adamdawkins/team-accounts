@@ -2,7 +2,9 @@ TeamBudget::Application.routes.draw do
   post 'sessions' => 'sessions#create'
   get 'sessions/new'
 
-  resources :transactions
+  resources :transactions do
+    collection { post :import}
+  end
   resources :explainations
   resources :users
 

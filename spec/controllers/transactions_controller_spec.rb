@@ -105,4 +105,19 @@ describe TransactionsController do
     end
   end
 
+  describe "#import" do
+    before :each do 
+      controller.stub! :authenticate_user
+    end
+
+    it "creates transactions for each transaction in the file" do
+      expect {
+      post 'import', file: Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv')))  
+      }.to change(Transaction, :count).by 3
+
+    end
+
+
+  end
+
 end

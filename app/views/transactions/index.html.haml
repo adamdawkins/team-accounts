@@ -20,3 +20,7 @@
             - else
               %span.alert.label unexplained
   = link_to 'Add transaction', new_transaction_path, class: 'button'
+
+  = form_tag import_transactions_path, multipart: true do
+    = file_field_tag "file"
+    = submit_tag "Import"

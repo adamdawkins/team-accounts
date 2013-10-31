@@ -200,4 +200,14 @@ describe Transaction do
     end
   end
 
+  describe "#import" do
+    it "imports the transactions in the file" do
+      expect {
+
+      Transaction.import Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv')))  
+      }.to change(Transaction, :count).by 3
+       
+    end
+  end
+
 end
