@@ -25,8 +25,13 @@ class TransactionsController < ApplicationController
   end
 
   def import
-    Transaction.import params[:file]
-    redirect_to transactions_path, notice: "Transactions imported successfully"
+    file = params[:file]
+    if file.nil?
+      redirect_to transactions_path, alert: "No CSV found to upload"
+    else
+      Transaction.import file
+      redirect_to transactions_path, notice: "Transactions imported successfully"
+    end
   end
 
   private
