@@ -9,6 +9,9 @@
           = f.label :description
           = f.text_field :description
       .row
+        .large-8.columns
+          = f.collection_select :category_id, Category.all, :id, :name
+      .row
         .large-2.columns
           .row.collapse
             = f.label :amount

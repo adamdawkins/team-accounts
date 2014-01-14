@@ -7,3 +7,7 @@ User.create({
   password:"password",
   password_confirmation: "password"
 })
+
+categories = ["training equipment", "kit", "health and safety", "administrative costs", "registration fees", "grants", "player registration", "other"]
+
+categories.each {|c| Category.create({name: c}) }
