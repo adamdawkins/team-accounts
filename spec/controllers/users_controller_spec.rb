@@ -3,7 +3,11 @@ require 'spec_helper'
 describe UsersController do
 
   describe "GET #new" do
-    before { get :new }
+    before :each do
+      controller.stub! :authenticate_user
+      get 'new'
+    end
+
     it "has a 200 status code" do
       expect(response.status).to eq(200)
     end
@@ -18,8 +22,12 @@ describe UsersController do
   end
 
   describe "POST #create" do 
-    
+
     context "with valid attributes" do
+      before :each do 
+        controller.stub! :authenticate_user
+      end
+
       it "creates a new user" do 
         expect {
           post :create, user: FactoryGirl.attributes_for(:user)
@@ -27,17 +35,21 @@ describe UsersController do
       end
 
       it "re-directs to the new user" do
-          post :create, user: FactoryGirl.attributes_for(:user)
-          expect(response).to redirect_to(User.last)
+        post :create, user: FactoryGirl.attributes_for(:user)
+        expect(response).to redirect_to(User.last)
       end
 
-      it "logs the new user in" do
+      it "does not log the new user in" do
         post :create, user: FactoryGirl.attributes_for(:user)
-        expect(session[:user_id]).to eq User.last.id
+        expect(session[:user_id]).to_not eq User.last.id
       end
     end
 
     context "with invalid attributes" do 
+      before :each do 
+        controller.stub! :authenticate_user
+      end
+
       it "does not create a user" do 
         expect {
           post :create, user: FactoryGirl.attributes_for(:user, :invalid)
@@ -49,6 +61,6 @@ describe UsersController do
         expect(response).to redirect_to :new_user
       end
     end
-    
+
   end
 end

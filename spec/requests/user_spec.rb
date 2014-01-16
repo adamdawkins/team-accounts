@@ -4,6 +4,7 @@ describe "Users" do
   describe "GET /users/new" do
 
     before(:each) do
+      mock_login
       visit new_user_path
     end
 
@@ -50,13 +51,6 @@ describe "Users" do
       it "creates a user record in the database" do
         expect(User.where(email: 'john.smith@example.com').length).to eq(1)
       end
-
-      it "logs the user in" do
-        # assumes root_path re-directs users to login page if not logged in
-        visit root_path
-        expect(page.current_path).to eq root_path
-      end
-
     end
 
     context "submit form with non-matching passwords" do
