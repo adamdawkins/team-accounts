@@ -1,4 +1,6 @@
 TeamBudget::Application.routes.draw do
+  resources :transaction_imports
+
   post 'sessions' => 'sessions#create'
   get 'sessions/new'
 

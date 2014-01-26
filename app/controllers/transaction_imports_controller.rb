@@ -1,0 +1,2 @@
+class TransactionImportsController < ApplicationController
+end
