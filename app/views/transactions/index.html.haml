@@ -5,7 +5,6 @@
         %th date
         %th description
         %th amount
-        %th#balance_column balance
         %th status
       
     %tbody
@@ -15,7 +14,6 @@
           %td
             = link_to transaction.label, transaction_path(transaction)
           %td{style: "text-align:right"}= transaction.display_value
-          %td= number_to_currency transaction.balance
           %td 
             - if transaction.explained?
               %span.success.label explained

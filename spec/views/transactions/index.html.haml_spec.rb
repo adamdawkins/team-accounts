@@ -16,7 +16,4 @@ describe "transactions/index.html.haml" do
     expect(page).to have_selector 'a', text: "Add transaction"
   end
 
-  it "displays a 'balance' column" do
-      expect(page).to have_selector '#balance_column'
-  end
 end

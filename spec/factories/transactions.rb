@@ -6,7 +6,6 @@ FactoryGirl.define do
     description "MyString"
     date "2013-09-11"
     amount 100.00
-    balance 200.00
     payment_method "MyString"
     reference "MyString"
     is_credit true
