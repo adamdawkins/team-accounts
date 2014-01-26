@@ -4,6 +4,7 @@ class Transaction < ActiveRecord::Base
   validates_presence_of :date
   validates_presence_of :description
   validates_presence_of :amount
+  validates :balance, presence: true, numericality: true
   validates :amount, numericality: {greater_than: 0.00}
 
   has_many :explainations, dependent: :destroy
@@ -57,6 +58,7 @@ class Transaction < ActiveRecord::Base
       @transaction = Transaction.new
       @transaction.date = hash['Date']   
       @transaction.description = hash['Description']   
+      @transaction.balance = hash['Balance'].to_f || @previous_balance
       if hash['Paid in'].nil?
         @transaction.is_credit = false
         @transaction.amount = hash['Paid out'].to_f
@@ -64,6 +66,7 @@ class Transaction < ActiveRecord::Base
         @transaction.is_credit = true
         @transaction.amount = hash['Paid in'].to_f
       end
+      @previous_balance = @transaction.balance
       @transaction.save
     end
   end

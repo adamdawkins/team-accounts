@@ -88,6 +88,7 @@ describe "Transactions" do
         fill_in 'transaction[date]', with: @transaction.date
         fill_in 'transaction[amount]', with: @transaction.amount
         fill_in 'transaction[description]', with: @transaction.description
+        fill_in 'transaction[balance]', with: @transaction.balance
         click_button 'Create transaction'
       end
 

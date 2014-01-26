@@ -14,6 +14,8 @@ describe Transaction do
       it { should validate_presence_of :description }
       it { should validate_presence_of :amount }
       it { should validate_numericality_of(:amount).is_greater_than 0.00 }
+      it { should validate_presence_of :balance }
+      it { should validate_numericality_of :balance }
     end
     
    describe "associations" do 
@@ -203,10 +205,8 @@ describe Transaction do
   describe "#import" do
     it "imports the transactions in the file" do
       expect {
-
-      Transaction.import Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv')))  
+        Transaction.import Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv')))  
       }.to change(Transaction, :count).by 3
-       
     end
   end
 

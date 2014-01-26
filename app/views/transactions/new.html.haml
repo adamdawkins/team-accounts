@@ -10,7 +10,7 @@
           = f.label :description
           = f.text_field :description
         .row
-          .large-3.columns
+          .large-2.columns
             %label Transaction type
             .switch
               = f.radio_button :is_credit, "0", id: "is_credit_debit", checked: "checked"
@@ -18,8 +18,11 @@
               = f.radio_button :is_credit, "1", id: "is_credit_credit"
               %label{:for => "is_credit_credit", onclick: ""} Credit
               %span
-          .large-3.columns
+          .large-2.columns
             = f.label :amount
             = f.number_field :amount
+          .large-2.columns
+            = f.label :balance
+            = f.number_field :balance
       .large-12.columns
         = f.submit 'Create transaction', class: 'button expand'
