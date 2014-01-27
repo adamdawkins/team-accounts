@@ -51,6 +51,10 @@ class Transaction < ActiveRecord::Base
     description
   end
 
+  def self.accessible_attributes
+    [:date, :description, :amount]
+  end
+
   def self.import file
     CSV.foreach(file.path, headers: true) do |row|
       hash = row.to_hash

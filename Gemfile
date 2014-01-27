@@ -19,7 +19,6 @@ gem 'haml-rails'
 
 # Use Foundation SCSS Framework
 # See http://foundation.zurb.com
-
 gem 'zurb-foundation'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -33,6 +32,9 @@ gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
+
+# Use Smarter CSV Gem for CSV imports. Read more: https://github.com/tilo/smarter_csv
+gem 'smarter_csv'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

@@ -23,6 +23,25 @@ describe Transaction do
 
   end
 
+  describe "Transaction.accessible_attributes" do
+    it "returns an array of attributes for use in CSV importer" do
+      expect(Transaction.accessible_attributes).to be_kind_of Array
+    end
+
+    it "contains 'date'" do
+      expect(Transaction.accessible_attributes).to include :date
+    end
+
+    it "contains 'description'" do
+      expect(Transaction.accessible_attributes).to include :description
+    end
+
+    it "contains 'amount'" do
+      expect(Transaction.accessible_attributes).to include :amount
+    end
+
+  end
+
   describe "#explained_amount" do
     context "no explainations" do
       before :all do 
@@ -59,8 +78,6 @@ describe Transaction do
 
     end
     
-
-
   end
 
   describe "#unexplained_amount" do 
