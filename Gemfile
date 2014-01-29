@@ -57,7 +57,7 @@ gem 'nokogiri', '1.5.4'
 
 group :development, :test do
   gem 'rb-fsevent', '~> 0.9.1'
-  gem 'guard', '1.6.2'
+  gem 'guard', '2.2.4'
   gem 'guard-rspec', '2.5.1'
   gem 'guard-cucumber'
   gem 'rspec-rails', '2.13.1'
