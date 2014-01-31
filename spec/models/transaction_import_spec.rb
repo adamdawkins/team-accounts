@@ -48,6 +48,13 @@ describe TransactionImport do
       end
     end
 
+    describe "#imported_balances" do
+      it "returns an array of Balances" do
+        expect(@transaction_import.imported_balances).to be_kind_of Array
+        expect(@transaction_import.imported_balances.first.class.name).to eq "Balance"
+      end
+    end
+
     describe "#process_csv" do
       it "returns an array of CSV rows" do
         expect(@transaction_import.imported_transactions).to be_kind_of Array
@@ -56,11 +63,15 @@ describe TransactionImport do
     
     describe "#save" do
       it "saves the transactions to the database" do
-        expect { @transaction_import.save }.to change(Transaction, :count).by 4
+        expect {@transaction_import.save}.to change(Transaction, :count).by 4
       end
 
       it "returns true" do
         expect( @transaction_import.save ).to eq true
+      end
+
+      it "saves the balances to the database" do
+        expect {@transaction_import.save}.to change(Balance, :count).by 3
       end
     end
   end
