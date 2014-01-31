@@ -6,7 +6,10 @@ class TransactionImport
   end
 
   def save
-
+    if imported_transactions.map(&:valid?).all?
+      imported_transactions.each(&:save)
+      true
+    end 
   end
 
   def imported_transactions
@@ -28,7 +31,7 @@ class TransactionImport
     transaction.is_credit = row[:paid_out].nil?
     transaction.amount = transaction.is_credit ? row[:paid_in] : row[:paid_out] 
 
-    return transaction
+    transaction
   end
   
   def process_csv

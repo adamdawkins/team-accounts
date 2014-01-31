@@ -56,10 +56,12 @@ describe TransactionImport do
     
     describe "#save" do
       it "saves the transactions to the database" do
-        pending
-        expect { @transaction_import.save }.to change(Transaction, :count).by 3
+        expect { @transaction_import.save }.to change(Transaction, :count).by 4
+      end
+
+      it "returns true" do
+        expect( @transaction_import.save ).to eq true
       end
     end
   end
-
 end
