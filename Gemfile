@@ -57,9 +57,6 @@ gem 'nokogiri', '1.5.4'
 
 group :development, :test do
   gem 'rb-fsevent', '~> 0.9.1'
-  gem 'guard', '2.2.4'
-  gem 'guard-rspec', '2.5.1'
-  gem 'guard-cucumber'
   gem 'rspec-rails', '2.13.1'
   gem 'fuubar'
   gem 'shoulda-matchers', '2.3.0'
@@ -68,8 +65,16 @@ group :development, :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner', '1.0.1'
 
+  # Code quality tools
   gem 'rubocop'
+  gem 'reek'
+  gem 'simplecov', require:  false
+
+  # Guard
+  gem 'guard', '2.2.4'
+  gem 'guard-rspec', '2.5.1'
+  gem 'guard-cucumber'
+  gem 'guard-preek'
 end
 
 
-gem 'simplecov', require:  false
