@@ -2,6 +2,12 @@ require 'spec_helper'
 
 describe TransactionsController do
 
+  let(:test_file) do
+    Rack::Test::UploadedFile.new(
+      File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv'))
+    )
+  end
+
   describe '#new' do
     before :each do
       controller.stub! :authenticate_user
@@ -41,7 +47,8 @@ describe TransactionsController do
 
       context 'debit transaction' do
         it 'should save with #is_credit set to false' do
-          post :create, transaction: FactoryGirl.attributes_for(:transaction, :debit)
+          post :create,
+               transaction: FactoryGirl.attributes_for(:transaction, :debit)
           expect(Transaction.last.is_credit).to eq false
         end
       end
@@ -54,17 +61,20 @@ describe TransactionsController do
       end
       it 'does not create a transaction' do
         expect do
-          post :create, transaction: FactoryGirl.attributes_for(:transaction, :invalid)
+          post :create,
+               transaction: FactoryGirl.attributes_for(:transaction, :invalid)
         end.to_not change(Transaction, :count)
       end
 
       it 're-renders the new template' do
-        post :create, transaction: FactoryGirl.attributes_for(:transaction, :invalid)
+        post :create,
+             transaction: FactoryGirl.attributes_for(:transaction, :invalid)
         expect(response).to redirect_to :new_transaction
       end
 
       it 'sets an error message' do
-        post :create, transaction: FactoryGirl.attributes_for(:transaction, :invalid)
+        post :create,
+             transaction: FactoryGirl.attributes_for(:transaction, :invalid)
         expect(flash[:alert]).to eq 'The transaction was invalid'
       end
     end
@@ -112,7 +122,7 @@ describe TransactionsController do
 
     it 'creates transactions for each transaction in the file' do
       expect do
-      post 'import', file: Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv')))
+        post 'import', file: test_file
       end.to change(Transaction, :count).by 3
     end
 

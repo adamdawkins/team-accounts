@@ -10,3 +10,6 @@ AllCops:
     - script/**
     - bin/**
     - features/support/env.rb
+
+LineLength:
+  Max: 80 

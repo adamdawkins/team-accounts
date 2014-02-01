@@ -30,13 +30,22 @@ class TransactionsController < ApplicationController
       redirect_to transactions_path, alert: 'No CSV found to upload'
     else
       Transaction.import file
-      redirect_to transactions_path, notice: 'Transactions imported successfully'
+      redirect_to transactions_path,
+                  notice: 'Transactions imported successfully'
     end
   end
 
   private
 
   def transaction_params
-    params.require(:transaction).permit(:date, :description, :amount, :payment_method, :reference, :is_credit, :balance)
+    params.require(:transaction).permit(
+      :date,
+      :description,
+      :amount,
+      :payment_method,
+      :reference,
+      :is_credit,
+      :balance
+    )
   end
 end

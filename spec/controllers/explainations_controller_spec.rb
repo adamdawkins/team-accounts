@@ -11,13 +11,22 @@ describe ExplainationsController do
 
       it 'creates a new explaination record in the database' do
         expect do
-          post :create, explaination: FactoryGirl.attributes_for(:explaination, transaction_id: @transaction.id, category_id: @category.id)
+          post :create, explaination:
+            FactoryGirl.attributes_for(:explaination,
+                                       transaction_id: @transaction.id,
+                                       category_id: @category.id
+                                      )
         end.to change(Explaination, :count).by(1)
       end
 
     context 'with valid attributes' do
       before :each do
-          post :create, explaination: FactoryGirl.attributes_for(:explaination, transaction_id: @transaction.id, category_id: @category.id)
+          post :create, explaination:
+            FactoryGirl.attributes_for(
+              :explaination,
+              transaction_id: @transaction.id,
+              category_id: @category.id
+          )
       end
 
       it 'assigns the @explaination variable' do
@@ -39,12 +48,14 @@ describe ExplainationsController do
       end
       it 'does not create an explaination' do
         expect do
-          post :create, explaination: FactoryGirl.attributes_for(:explaination, :invalid)
+          post :create, explaination: FactoryGirl.attributes_for(:explaination,
+                                                                 :invalid)
         end.to_not change(Explaination, :count)
       end
 
       it 'sets an error message' do
-        post :create, explaination: FactoryGirl.attributes_for(:explaination, :invalid)
+        post :create, explaination: FactoryGirl.attributes_for(:explaination,
+                                                               :invalid)
         expect(flash[:alert]).to eq 'The explaination was invalid'
       end
     end

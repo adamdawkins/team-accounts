@@ -6,8 +6,9 @@ class ApplicationController < ActionController::Base
   helper :all
 
   def authenticate_user
-    redirect_to login_path,
-                error: 'You need to login to view that page' if current_user.nil?
+    if current_user.nil?
+      redirect_to login_path, error: 'You need to login to view that page'
+    end
   end
 
  def login(user_id)

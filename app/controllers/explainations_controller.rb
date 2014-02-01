@@ -12,6 +12,13 @@ class ExplainationsController < ApplicationController
   private
 
   def explaination_params
-    params.require(:explaination).permit(:date, :description, :amount, :is_credit, :transaction_id, :category_id)
+    params.require(:explaination).permit(
+      :date,
+      :description,
+      :amount,
+      :is_credit,
+      :transaction_id,
+      :category_id
+    )
   end
 end

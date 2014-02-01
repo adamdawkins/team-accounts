@@ -11,10 +11,15 @@ class Explaination < ActiveRecord::Base
   private
 
   def amount_value
-    error_message =  'value cannot be greater than remaining unexplained amount on transaction'
-    if transaction_id # this should never be nil in reality, but keeps test simpler
+    error_message =  'value cannot be greater than remaining unexplained\
+                      amount on transaction'
+    if transaction_id
+      # this should never be nil in reality, but keeps test simpler
       transaction = Transaction.find(transaction_id)
-      errors.add(:base, error_message) if amount > transaction.unexplained_amount
+
+      if amount > transaction.unexplained_amount
+        errors.add(:base, error_message)
+      end
     end
   end
 end

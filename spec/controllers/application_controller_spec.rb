@@ -54,7 +54,7 @@ describe ApplicationController do
       end
 
       it 'throws an error' do
-         proc { controller.login(1) }.should raise_error 'user already logged in'
+        proc { controller.login(1) }.should raise_error 'user already logged in'
       end
 
     end

@@ -46,7 +46,10 @@ describe 'transactions/show.html.haml' do
     end
 
     it 'displays the explainations' do
-      expect(page).to have_selector '#table_explainations tbody tr', count: @transaction.explainations.length
+      expect(page).to have_selector(
+        '#table_explainations tbody tr',
+        count: @transaction.explainations.length
+      )
     end
   end
 
@@ -70,7 +73,10 @@ describe 'transactions/show.html.haml' do
     before :each do
       mock_login
       @transaction = FactoryGirl.create :transaction, amount: 10.00
-      FactoryGirl.create :explaination, amount: 10.00, transaction_id: @transaction.id
+      FactoryGirl.create :explaination,
+                         amount: 10.00,
+                         transaction_id: @transaction.id
+
       visit transaction_path @transaction
     end
 

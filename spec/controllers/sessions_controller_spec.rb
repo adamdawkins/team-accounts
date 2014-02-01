@@ -98,7 +98,8 @@ describe SessionsController do
       end
 
       it 'creates an error message in the flash' do
-        expect(flash[:error]).to eq 'That email address or password is incorrect.'
+        flash_error = 'That email address or password is incorrect.'
+        expect(flash[:error]).to eq flash_error
       end
     end
 

@@ -1,7 +1,11 @@
 require 'spec_helper'
 
 describe TransactionImport do
-  let(:test_file) { Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv'))) }
+  let(:test_file) do
+    Rack::Test::UploadedFile.new(
+      File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv'))
+    )
+  end
 
   before :each do
     @transaction_import = TransactionImport.new(file: test_file)
@@ -21,7 +25,8 @@ describe TransactionImport do
       end
 
       it 'returns a Transaction object'  do
-        expect(TransactionImport.build_transaction_from_csv_row(@row).class.name).to eq 'Transaction'
+        transaction = TransactionImport.build_transaction_from_csv_row(@row)
+        expect(transaction.class.name).to eq 'Transaction'
       end
 
       context 'When :paid_in is nil' do
@@ -62,7 +67,8 @@ describe TransactionImport do
 
       context 'When :balance exists' do
         it 'returns a balance object' do
-          expect(TransactionImport.build_balance_from_csv_row(@row).class.name).to eq 'Balance'
+          balance = TransactionImport.build_balance_from_csv_row(@row)
+          expect(balance.class.name).to eq 'Balance'
         end
 
       end
@@ -70,15 +76,17 @@ describe TransactionImport do
 
     describe '#imported_transactions' do
       it 'returns an array of Transactions' do
-        expect(@transaction_import.imported_transactions).to be_kind_of Array
-        expect(@transaction_import.imported_transactions.first.class.name).to eq 'Transaction'
+        imported_transactions = @transaction_import.imported_transactions
+        expect(imported_transactions).to be_kind_of Array
+        expect(imported_transactions.first.class.name).to eq 'Transaction'
       end
     end
 
     describe '#imported_balances' do
       it 'returns an array of Balances' do
-        expect(@transaction_import.imported_balances).to be_kind_of Array
-        expect(@transaction_import.imported_balances.first.class.name).to eq 'Balance'
+        imported_balances = @transaction_import.imported_balances
+        expect(imported_balances).to be_kind_of Array
+        expect(imported_balances.first.class.name).to eq 'Balance'
       end
     end
 

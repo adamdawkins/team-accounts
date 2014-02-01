@@ -165,7 +165,9 @@ describe Transaction do
     end
 
     it 'returns the formatted to currency' do
-      expect(@transaction.display_value).to eq number_to_currency @transaction.value
+      expect(@transaction.display_value).to eq(
+        number_to_currency @transaction.value
+      )
     end
 
     it 'returns the currency in GBP' do
@@ -176,7 +178,9 @@ describe Transaction do
   describe '#explained?' do
     it 'returns true when full amount is explained' do
       @transaction = FactoryGirl.create :transaction, amount: 10.00
-      FactoryGirl.create :explaination, amount: 10.00, transaction_id: @transaction.id
+      FactoryGirl.create :explaination,
+                         amount: 10.00,
+                         transaction_id: @transaction.id
       expect(@transaction.explained?).to eq true
     end
 
@@ -208,7 +212,9 @@ describe Transaction do
     context 'one explaination' do
       it 'returns the explaination description' do
         transaction = FactoryGirl.create :transaction
-        explaination = FactoryGirl.create :explaination, transaction_id: transaction.id, description: 'explaination description'
+        explaination = FactoryGirl.create :explaination,
+                                          transaction_id: transaction.id,
+                                          description: 'description'
 
         expect(transaction.label).to eq explaination.description
 
@@ -217,13 +223,21 @@ describe Transaction do
   end
 
   describe '#import' do
+
+    let(:test_file) do
+      Rack::Test::UploadedFile.new(
+        File.open File.join(Rails.root,
+                            '/spec/fixtures/transactions_upload.csv')
+      )
+    end
+
     it 'has too many lines (14/10)' do
       pending
     end
 
     it 'imports the transactions in the file' do
       expect do
-        Transaction.import Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv')))
+        Transaction.import test_file
       end.to change(Transaction, :count).by 3
     end
   end

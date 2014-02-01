@@ -21,10 +21,6 @@ IndentationConsistency:
 IndentationWidth:
   Enabled: false
 
-# Offence count: 75
-LineLength:
-  Max: 179
-
 # Offence count: 2
 ParenthesesAsGroupedExpression:
   Enabled: false
