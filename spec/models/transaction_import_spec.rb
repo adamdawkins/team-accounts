@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe TransactionImport do
-  let(:test_file) {Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv')))}
+  let(:test_file) { Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv'))) }
 
   before :each do
     @transaction_import = TransactionImport.new(file: test_file)
@@ -84,7 +84,7 @@ describe TransactionImport do
 
     describe "#save" do
       it "saves the transactions to the database" do
-        expect {@transaction_import.save}.to change(Transaction, :count).by 4
+        expect { @transaction_import.save }.to change(Transaction, :count).by 4
       end
 
       it "returns true" do
@@ -92,7 +92,7 @@ describe TransactionImport do
       end
 
       it "saves the balances to the database" do
-        expect {@transaction_import.save}.to change(Balance, :count).by 3
+        expect { @transaction_import.save }.to change(Balance, :count).by 3
       end
     end
   end

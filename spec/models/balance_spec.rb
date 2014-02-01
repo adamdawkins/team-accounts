@@ -6,7 +6,7 @@ describe Balance do
       expect(FactoryGirl.create(:balance)).to be_valid
     end
 
-    let(:balance) {FactoryGirl.build(:balance)}
+    let(:balance) { FactoryGirl.build(:balance) }
 
     describe "validation" do
       it { should validate_presence_of   :date }

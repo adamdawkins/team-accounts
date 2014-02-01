@@ -6,7 +6,7 @@ describe Transaction do
       expect(FactoryGirl.create(:transaction)).to be_valid
     end
 
-    let(:transaction) {FactoryGirl.build(:transaction)}
+    let(:transaction) { FactoryGirl.build(:transaction) }
 
     describe "validation" do
 

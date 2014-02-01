@@ -5,7 +5,7 @@ describe User do
     expect(FactoryGirl.create(:user)).to be_valid
   end
 
-  let(:user) {FactoryGirl.build(:user)}
+  let(:user) { FactoryGirl.build(:user) }
 
   describe "basic model" do
     before(:each) do 
