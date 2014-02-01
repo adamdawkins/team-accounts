@@ -48,7 +48,6 @@ describe Transaction do
         @transaction = FactoryGirl.build :transaction
       end
 
-
       it "returns a float" do
         expect(@transaction.explained_amount).to be_kind_of Float
       end

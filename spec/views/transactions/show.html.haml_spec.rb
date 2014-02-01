@@ -50,7 +50,6 @@ describe "transactions/show.html.haml" do
     end
   end
 
-
   context "transaction with unexplained amount" do 
     before :each do
       mock_login

@@ -4,7 +4,6 @@ describe "explainations/_form" do
   before :each do
     transaction = FactoryGirl.create :transaction
 
-
     render partial: "explainations/form.html.haml", locals: {explaination: Explaination.new, transaction: transaction}
   end
 

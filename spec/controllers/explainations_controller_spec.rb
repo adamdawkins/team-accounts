@@ -24,7 +24,6 @@ describe ExplainationsController do
         expect(assigns[:explaination]).to_not be_nil
       end
 
-
       it "redirects to the show action for the transaction" do
         expect(response).to redirect_to(Explaination.last.transaction)
       end

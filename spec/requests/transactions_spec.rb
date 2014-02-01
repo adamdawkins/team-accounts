@@ -10,7 +10,6 @@ describe "Transactions" do
         visit transactions_path
       end
 
-
       it "loads the transactions path" do
         expect(page.current_path).to eq transactions_path
       end

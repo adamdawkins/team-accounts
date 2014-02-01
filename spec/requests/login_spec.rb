@@ -13,7 +13,6 @@ describe "Login" do
         expect(page.status_code).to be (200)
       end
 
-
     end
 
     context "user logged in" do

@@ -82,7 +82,6 @@ describe TransactionImport do
       end
     end
 
-
     describe "#save" do
       it "saves the transactions to the database" do
         expect {@transaction_import.save}.to change(Transaction, :count).by 4

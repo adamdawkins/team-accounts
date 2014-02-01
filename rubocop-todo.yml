@@ -7,11 +7,6 @@
 
 # Offence count: 30
 Documentation:
-  Enabled: true
-
-# Offence count: 10
-# Cop supports --auto-correct.
-EmptyLines:
   Enabled: false
 
 # Offence count: 11
