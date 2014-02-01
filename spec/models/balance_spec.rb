@@ -13,5 +13,5 @@ describe Balance do
       it { should validate_uniqueness_of :date }
       it { should validate_presence_of   :amount }
     end
-  end 
+  end
 end

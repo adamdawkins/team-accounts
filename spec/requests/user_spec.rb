@@ -37,7 +37,7 @@ describe "Users" do
     end
 
     context "submit form with valid data" do
-      before(:each) do 
+      before(:each) do
         fill_in 'user[email]', with: 'john.smith@example.com'
         fill_in 'user[password]', with: 'password'
         fill_in 'user[password_confirmation]', with: 'password'
@@ -54,7 +54,7 @@ describe "Users" do
     end
 
     context "submit form with non-matching passwords" do
-      before(:each) do 
+      before(:each) do
         fill_in 'user[email]', with: 'john.smith@example.com'
         fill_in 'user[password]', with: 'password'
         fill_in 'user[password_confirmation]', with: 'not-the-same-password'

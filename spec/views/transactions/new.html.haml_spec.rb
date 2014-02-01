@@ -17,7 +17,7 @@ describe "transactions/new.html.haml" do
   it "displays an amount field" do
     expect(page).to have_field "transaction[amount]", type: "number"
   end
-  
+
   it "displays is_credit radio buttons" do
     expect(page).to have_field "transaction[is_credit]", type: "radio"
   end

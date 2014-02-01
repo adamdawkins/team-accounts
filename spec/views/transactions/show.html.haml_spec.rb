@@ -8,7 +8,7 @@ describe "transactions/show.html.haml" do
       visit transaction_path @transaction
     end
 
-    it "displays the transaction description" do 
+    it "displays the transaction description" do
       expect(page).to have_content @transaction.description
     end
 
@@ -41,7 +41,7 @@ describe "transactions/show.html.haml" do
       visit transaction_path @transaction
     end
 
-    it "displays an explainations heading" do 
+    it "displays an explainations heading" do
       expect(page).to have_content "Explainations"
     end
 
@@ -50,28 +50,28 @@ describe "transactions/show.html.haml" do
     end
   end
 
-  context "transaction with unexplained amount" do 
+  context "transaction with unexplained amount" do
     before :each do
       mock_login
-      @transaction = FactoryGirl.create :transaction 
-      visit transaction_path @transaction 
+      @transaction = FactoryGirl.create :transaction
+      visit transaction_path @transaction
     end
-    
+
     it "displays the unexplained amount" do
       expect(page).to have_content "unexplained"
-    end 
+    end
 
     it "displays the new explaination form" do
      expect(page).to have_selector "#new_explaination_form"
     end
   end
 
-  context "transaction with no unexplained amount" do 
+  context "transaction with no unexplained amount" do
     before :each do
       mock_login
       @transaction = FactoryGirl.create :transaction, amount: 10.00
       FactoryGirl.create :explaination, amount: 10.00, transaction_id: @transaction.id
-      visit transaction_path @transaction 
+      visit transaction_path @transaction
     end
 
     it "displays text saying transaction is explained" do

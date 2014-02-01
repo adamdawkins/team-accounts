@@ -8,7 +8,7 @@ describe User do
   let(:user) { FactoryGirl.build(:user) }
 
   describe "basic model" do
-    before(:each) do 
+    before(:each) do
       user.save!
     end
 
@@ -22,6 +22,6 @@ describe User do
       expect(result).to be true
     end
 
-  end  
+  end
 
 end

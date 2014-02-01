@@ -15,8 +15,8 @@ describe Transaction do
       it { should validate_presence_of :amount }
       it { should validate_numericality_of(:amount).is_greater_than 0.00 }
     end
-    
-   describe "associations" do 
+
+   describe "associations" do
     it { should have_many(:explainations).dependent(:destroy) }
     it { should have_many(:categories).through(:explainations) }
    end
@@ -44,7 +44,7 @@ describe Transaction do
 
   describe "#explained_amount" do
     context "no explainations" do
-      before :all do 
+      before :all do
         @transaction = FactoryGirl.build :transaction
       end
 
@@ -68,18 +68,18 @@ describe Transaction do
         end
       end
 
-      it "returns a float" do 
+      it "returns a float" do
         expect(@transaction.explained_amount).to be_kind_of Float
       end
-      it "returns the sum of the explaination amounts" do 
+      it "returns the sum of the explaination amounts" do
         expect(@transaction.explained_amount).to eq 20.00
       end
 
     end
-    
+
   end
 
-  describe "#unexplained_amount" do 
+  describe "#unexplained_amount" do
     before :all do
       @transaction = FactoryGirl.create :transaction, amount: 100.00
       2.times do
@@ -91,7 +91,7 @@ describe Transaction do
     context "transaction with explainations" do
       it "returns a float" do
         expect(@transaction.unexplained_amount).to be_kind_of Float
-      end 
+      end
 
       it "equals the transaction amount, less the total of the explainations" do
         expect(@transaction.unexplained_amount).to eq 80.00
@@ -119,12 +119,12 @@ describe Transaction do
     end
   end
 
-  describe "#value" do 
+  describe "#value" do
     before :all do
       @transaction = FactoryGirl.build_stubbed :transaction
     end
 
-    it "returns a float" do 
+    it "returns a float" do
       expect(@transaction.value).to be_kind_of Float
     end
 
@@ -133,7 +133,7 @@ describe Transaction do
         @transaction = FactoryGirl.build_stubbed :transaction, :credit
       end
 
-      it "returns a positive value" do 
+      it "returns a positive value" do
         expect(@transaction.value).to be > 0.00
       end
 
@@ -148,7 +148,7 @@ describe Transaction do
         @transaction = FactoryGirl.build_stubbed :transaction, :debit
       end
 
-      it "returns a negative value" do 
+      it "returns a negative value" do
         expect(@transaction.value).to be < 0.00
       end
 
@@ -159,16 +159,16 @@ describe Transaction do
     end
   end
 
-  describe "#display_value" do 
+  describe "#display_value" do
     before :all do
       @transaction = FactoryGirl.build_stubbed :transaction
     end
-    
-    it "returns the formatted to currency" do 
+
+    it "returns the formatted to currency" do
       expect(@transaction.display_value).to eq number_to_currency @transaction.value
     end
 
-    it "returns the currency in GBP" do 
+    it "returns the currency in GBP" do
       expect(@transaction.display_value).to include "&pound;"
     end
   end
@@ -186,15 +186,15 @@ describe Transaction do
     end
   end
 
-  describe "#label" do 
+  describe "#label" do
     context "no explainations" do
       it "returns the transaction description" do
         transaction = FactoryGirl.build_stubbed :transaction
-        expect(transaction.label).to eq transaction.description 
+        expect(transaction.label).to eq transaction.description
       end
     end
 
-    context "multiple explainations" do 
+    context "multiple explainations" do
       it "returns 'split transaction'" do
         transaction = FactoryGirl.create :transaction
         2.times do
@@ -205,8 +205,8 @@ describe Transaction do
       end
     end
 
-    context "one explaination" do 
-      it "returns the explaination description" do 
+    context "one explaination" do
+      it "returns the explaination description" do
         transaction = FactoryGirl.create :transaction
         explaination = FactoryGirl.create :explaination, transaction_id: transaction.id, description: "explaination description"
 
@@ -219,7 +219,7 @@ describe Transaction do
   describe "#import" do
     it "imports the transactions in the file" do
       expect do
-        Transaction.import Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv')))  
+        Transaction.import Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv')))
       end.to change(Transaction, :count).by 3
     end
   end

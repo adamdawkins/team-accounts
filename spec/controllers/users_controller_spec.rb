@@ -14,21 +14,21 @@ describe UsersController do
 
     it "assigns @user to a new User object" do
       expect(assigns[:user].class.name).to eq "User"
-    end 
+    end
 
     it "renders the new template" do
-      expect(response).to render_template "new" 
+      expect(response).to render_template "new"
     end
   end
 
-  describe "POST #create" do 
+  describe "POST #create" do
 
     context "with valid attributes" do
-      before :each do 
+      before :each do
         controller.stub! :authenticate_user
       end
 
-      it "creates a new user" do 
+      it "creates a new user" do
         expect do
           post :create, user: FactoryGirl.attributes_for(:user)
         end.to change(User, :count).by(1)
@@ -45,12 +45,12 @@ describe UsersController do
       end
     end
 
-    context "with invalid attributes" do 
-      before :each do 
+    context "with invalid attributes" do
+      before :each do
         controller.stub! :authenticate_user
       end
 
-      it "does not create a user" do 
+      it "does not create a user" do
         expect do
           post :create, user: FactoryGirl.attributes_for(:user, :invalid)
         end.to_not change(User, :count)

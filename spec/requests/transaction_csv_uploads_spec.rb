@@ -19,7 +19,7 @@ describe "TransactionCsvUploads" do
 
         expect(page).to have_content "Transactions imported successfully"
       end
-    end 
+    end
   end
   describe "no CSV uploaded" do
     context "transactions page" do

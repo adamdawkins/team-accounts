@@ -5,7 +5,7 @@ describe "Transactions" do
   describe "GET /transactions" do
     context "user logged in" do
 
-      before :each do 
+      before :each do
         mock_login
         visit transactions_path
       end
@@ -77,9 +77,9 @@ describe "Transactions" do
 
     end
   end
-  
+
   describe "POST /transactions" do
-    context "valid transaction" do 
+    context "valid transaction" do
       before :each do
         @transaction = FactoryGirl.build :transaction
         mock_login
@@ -115,7 +115,7 @@ describe "Transactions" do
         @transaction = FactoryGirl.create :transaction
       end
 
-      before :each do 
+      before :each do
         visit transaction_path @transaction
       end
 

@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe TransactionsController do
 
-  describe "#new" do 
+  describe "#new" do
     before :each do
       controller.stub! :authenticate_user
       get 'new'
     end
 
-    it "renders the new template" do 
+    it "renders the new template" do
       expect(response).to render_template 'new'
     end
 
@@ -19,7 +19,7 @@ describe TransactionsController do
 
   describe "#create" do
     context "with valid attributes" do
-      before :each do 
+      before :each do
         controller.stub! :authenticate_user
       end
 
@@ -48,11 +48,11 @@ describe TransactionsController do
 
     end
 
-    context "with invalid attributes" do 
+    context "with invalid attributes" do
       before :each do
         controller.stub! :authenticate_user
       end
-      it "does not create a transaction" do 
+      it "does not create a transaction" do
         expect do
           post :create, transaction: FactoryGirl.attributes_for(:transaction, :invalid)
         end.to_not change(Transaction, :count)
@@ -77,7 +77,7 @@ describe TransactionsController do
       get 'show', id: transaction.id
     end
 
-    it "sets the @transaction variable" do 
+    it "sets the @transaction variable" do
       expect(assigns[:transaction]).to_not be_nil
     end
 
@@ -87,11 +87,11 @@ describe TransactionsController do
   end
 
   describe "#index" do
-    before :each do 
+    before :each do
       controller.stub! :authenticate_user
-      2.times do 
+      2.times do
         FactoryGirl.create(:transaction)
-      end 
+      end
       get 'index'
     end
 
@@ -106,13 +106,13 @@ describe TransactionsController do
   end
 
   describe "#import" do
-    before :each do 
+    before :each do
       controller.stub! :authenticate_user
     end
 
     it "creates transactions for each transaction in the file" do
       expect do
-      post 'import', file: Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv')))  
+      post 'import', file: Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv')))
       end.to change(Transaction, :count).by 3
     end
 

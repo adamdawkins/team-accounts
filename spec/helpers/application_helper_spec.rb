@@ -11,7 +11,7 @@ describe ApplicationHelper do
         expect(helper.current_user).to be_instance_of User
       end
     end
-    
+
     context "user is not logged in" do
       it "returns nil" do
         expect(helper.current_user).to eq nil

@@ -10,7 +10,7 @@ class TransactionImport
       imported_transactions.each(&:save)
       imported_balances.each(&:save)
       true
-    end 
+    end
   end
 
   def imported_transactions
@@ -18,7 +18,7 @@ class TransactionImport
     imported_transactions = []
 
     csv_rows.each do |row|
-      transaction = TransactionImport.build_transaction_from_csv_row row 
+      transaction = TransactionImport.build_transaction_from_csv_row row
       imported_transactions << transaction
     end
 
@@ -40,7 +40,7 @@ class TransactionImport
   def self.build_transaction_from_csv_row(row)
     transaction = Transaction.new(row.slice(*Transaction.accessible_attributes))
     transaction.is_credit = row[:paid_out].nil?
-    transaction.amount = transaction.is_credit ? row[:paid_in] : row[:paid_out] 
+    transaction.amount = transaction.is_credit ? row[:paid_in] : row[:paid_out]
 
     transaction
   end
@@ -50,7 +50,7 @@ class TransactionImport
 
     balance
   end
-  
+
   def process_csv
     SmarterCSV.process(@file.path, convert_values_to_numeric: true)
   end

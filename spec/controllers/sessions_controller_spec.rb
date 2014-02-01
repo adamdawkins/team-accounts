@@ -11,7 +11,7 @@ describe SessionsController do
       it "returns http success" do
         response.should be_success
       end
-      
+
       it "renders the new template" do
         expect(response).to render_template "new"
       end
@@ -23,10 +23,10 @@ describe SessionsController do
         session[:user_id] = 1
         get 'new'
       end
-      
+
       it "sets a flash message" do
         expect(flash[:notice]).to eq "You are already logged in."
-      end 
+      end
 
       it "redirects to the homepage" do
         expect(response).to redirect_to root_path
@@ -38,11 +38,11 @@ describe SessionsController do
   describe "#create" do
     context "valid user credentials" do
 
-      before :each do 
+      before :each do
         @user = FactoryGirl.create :user
         post 'create',
              email:    @user.email,
-             password: @user.password 
+             password: @user.password
       end
 
       it "creates a user_id session object with the user id" do
@@ -106,10 +106,10 @@ describe SessionsController do
 
   describe "#destroy" do
     before :each do
-      session[:user_id] = 1      
+      session[:user_id] = 1
       get 'destroy'
     end
-    
+
     it "sets the session[:user_id] to nil" do
       expect(session[:user_id]).to be_nil
     end
@@ -118,7 +118,7 @@ describe SessionsController do
       expect(response).to redirect_to root_path
     end
 
-    it "sets a flash message" do 
+    it "sets a flash message" do
       expect(flash[:success]).to eq "You have logged out successfully."
     end
 

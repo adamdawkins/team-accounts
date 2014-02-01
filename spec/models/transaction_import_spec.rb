@@ -16,7 +16,7 @@ describe TransactionImport do
   context "with valid transactions" do
 
     describe "TransactionImport.build_transaction_from_csv_row" do
-      before :each do 
+      before :each do
         @row = @transaction_import.process_csv.first
       end
 
@@ -46,18 +46,18 @@ describe TransactionImport do
     end
 
     describe "TransactionImport.build_balance_from_csv_row" do
-      before :each do 
+      before :each do
         @row = @transaction_import.process_csv.first
       end
 
       context "When :balance does not exist" do
-        before :each do 
+        before :each do
           @row.delete :balance
         end
 
         it "returns nil" do
           expect(TransactionImport.build_balance_from_csv_row @row).to be_nil
-        end 
+        end
       end
 
       context "When :balance exists" do
@@ -88,7 +88,7 @@ describe TransactionImport do
       end
 
       it "returns true" do
-        expect( @transaction_import.save ).to eq true
+        expect(@transaction_import.save).to eq true
       end
 
       it "saves the balances to the database" do

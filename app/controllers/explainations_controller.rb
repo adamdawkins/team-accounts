@@ -2,9 +2,9 @@ class ExplainationsController < ApplicationController
   def create
     @explaination = Explaination.new explaination_params
     if @explaination.save
-      flash[:success] = "Explaination added successfully"      
+      flash[:success] = "Explaination added successfully"
     else
-      flash[:alert] = "The explaination was invalid"      
+      flash[:alert] = "The explaination was invalid"
     end
     redirect_to transaction_path explaination_params[:transaction_id]
   end
@@ -15,4 +15,3 @@ class ExplainationsController < ApplicationController
     params.require(:explaination).permit(:date, :description, :amount, :is_credit, :transaction_id, :category_id)
   end
 end
-

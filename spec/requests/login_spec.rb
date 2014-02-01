@@ -4,7 +4,7 @@ describe "Login" do
 
   describe "GET /login" do
 
-    context "user not logged in" do 
+    context "user not logged in" do
       before :all do
         visit login_path
       end
@@ -20,7 +20,7 @@ describe "Login" do
         mock_login
         visit login_path
       end
-      
+
       it "redirects to the root path" do
         expect(page.current_path).to eq root_path
       end
@@ -35,7 +35,7 @@ describe "Login" do
   describe "POST /sessions" do
     context "valid user credentials" do
 
-      before :all do 
+      before :all do
         mock_login
       end
 

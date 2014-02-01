@@ -18,13 +18,13 @@ describe "Home Page" do
       end
 
       it "displays a title" do
-        expect(page).to have_selector 'h1#title', text:'Team Budget'
+        expect(page).to have_selector 'h1#title', text: 'Team Budget'
       end
 
     end
 
-    context "user logged in" do 
-      before :each do 
+    context "user logged in" do
+      before :each do
         mock_login
         visit "/"
       end

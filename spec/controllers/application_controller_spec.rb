@@ -10,7 +10,7 @@ describe ApplicationController do
           render text: "index"
         end
       end
-       
+
     context "user not logged in" do
 
       it "redirects to login page" do
@@ -44,15 +44,15 @@ describe ApplicationController do
       end
 
       it "sets session[:user_id] to the passed id" do
-        expect(session[:user_id]).to eq 1 
+        expect(session[:user_id]).to eq 1
       end
-    end 
+    end
 
     context "user already logged in" do
       before :each do
         session[:user_id] = 1
       end
-      
+
       it "throws an error" do
          proc { controller.login(1) }.should raise_error "user already logged in"
       end

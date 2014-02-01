@@ -14,15 +14,15 @@ describe "explainations/_form" do
     expect(response).to include "explaination[amount]"
   end
 
-  it "has a hidden input with the transaction id in it" do 
+  it "has a hidden input with the transaction id in it" do
     expect(response).to include "explaination[transaction_id]"
   end
 
-  it "displays an 'Add explaination' button" do 
+  it "displays an 'Add explaination' button" do
     expect(response).to include "button"
   end
 
-  it "displays a category dropdown" do 
+  it "displays a category dropdown" do
     expect(response).to include "explaination[category_id]"
   end
 end

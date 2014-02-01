@@ -17,5 +17,4 @@ class Explaination < ActiveRecord::Base
       errors.add(:base, error_message) if amount > transaction.unexplained_amount
     end
   end
- 
 end

@@ -17,7 +17,7 @@ describe Explaination do
       it { should validate_numericality_of(:amount).is_greater_than 0.00 }
     end
   end
-  
+
   describe "amount validation" do
     before :all do
       @category = FactoryGirl.create :category
@@ -29,14 +29,14 @@ describe Explaination do
                            amount: 10.00
       end
     end
-    
-    it "is invalid if amount is greater than transaction unexplained amount" do 
+
+    it "is invalid if amount is greater than transaction unexplained amount" do
       expect(
         FactoryGirl.build :explaination,
                           transaction_id: @transaction.id,
                           category_id: @category.id,
                           amount: 90.00
-      ).to be_invalid 
+      ).to be_invalid
     end
 
   end

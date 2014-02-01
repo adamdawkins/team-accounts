@@ -44,30 +44,10 @@ ParenthesesAsGroupedExpression:
 RedundantSelf:
   Enabled: false
 
-# Offence count: 2
-# Cop supports --auto-correct.
-SpaceAfterColon:
-  Enabled: false
-
-# Offence count: 2
-# Cop supports --auto-correct.
-SpaceInsideParens:
-  Enabled: false
-
 # Offence count: 390
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 StringLiterals:
-  Enabled: false
-
-# Offence count: 2
-# Cop supports --auto-correct.
-TrailingBlankLines:
-  Enabled: false
-
-# Offence count: 123
-# Cop supports --auto-correct.
-TrailingWhitespace:
   Enabled: false
 
 # Offence count: 1
