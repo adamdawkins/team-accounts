@@ -7,8 +7,8 @@ class TransactionImport
 
   def save
     if imported_transactions.map(&:valid?).all?
-      imported_transactions.each(&:save)
-      imported_balances.each(&:save)
+      imported_transactions.each &:save 
+      imported_balances.each &:save 
       true
     end 
   end
@@ -28,23 +28,29 @@ class TransactionImport
   def imported_balances
     csv_rows ||= process_csv
     imported_balances = []
+
     csv_rows.each do |row|
-      unless row[:balance].nil?
-        balance = Balance.new
-        balance.attributes = {date: row[:date], amount: row[:balance]}
-        imported_balances << balance
-      end
+      balance = TransactionImport.build_balance_from_csv_row(row)
+      imported_balances << balance unless balance.nil?
     end
+
     imported_balances
   end
 
   def self.build_transaction_from_csv_row row
-    transaction = Transaction.new
-    transaction.attributes = row.slice(*Transaction.accessible_attributes)
+    transaction = Transaction.new(row.slice(*Transaction.accessible_attributes))
     transaction.is_credit = row[:paid_out].nil?
     transaction.amount = transaction.is_credit ? row[:paid_in] : row[:paid_out] 
 
     transaction
+  end
+
+  def self.build_balance_from_csv_row row
+      unless row[:balance].nil?
+      balance = Balance.new date: row[:date], amount: row[:balance]
+      end
+
+    balance
   end
   
   def process_csv

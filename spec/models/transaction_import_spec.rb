@@ -1,19 +1,19 @@
 require 'spec_helper'
 
 describe TransactionImport do
-  @@test_file = Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv')))
-
+  let(:test_file) {Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv')))
+}
 
   context "with valid transactions" do
     before :each do
       @transaction_import = TransactionImport.new(
-        file: @@test_file
+        file: test_file
       )
     end
 
     describe "TransactionImport.build_transaction_from_csv_row" do
       before :each do 
-        @row = SmarterCSV.process(@@test_file.path, {convert_values_to_numeric: true}).first
+        @row = SmarterCSV.process(test_file.path, {convert_values_to_numeric: true}).first
       end
 
       it "returns a Transaction object"  do
@@ -39,6 +39,29 @@ describe TransactionImport do
         end
       end
 
+    end
+
+    describe "TransactionImport.build_balance_from_csv_row" do
+      before :each do 
+        @row = SmarterCSV.process(test_file.path, {convert_values_to_numeric: true}).first
+      end
+
+      context "When :balance does not exist" do
+        before :each do 
+          @row.delete :balance
+        end
+
+        it "returns nil" do
+          expect(TransactionImport.build_balance_from_csv_row @row).to be_nil
+        end 
+      end
+
+      context "When :balance exists" do
+        it "returns a balance object" do
+          expect(TransactionImport.build_balance_from_csv_row(@row).class.name).to eq 'Balance'
+        end
+
+      end
     end
 
     describe "#imported_transactions" do
