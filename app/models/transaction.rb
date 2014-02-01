@@ -54,7 +54,7 @@ class Transaction < ActiveRecord::Base
     [:date, :description, :amount]
   end
 
-  def self.import file
+  def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       hash = row.to_hash
       @transaction = Transaction.new
@@ -73,7 +73,7 @@ class Transaction < ActiveRecord::Base
     end
   end
   
-  def date_from_hsbc_csv date_string
+  def date_from_hsbc_csv(date_string)
     months = { 
       'Jan' => 1, 'Feb' => 2, 'Mar' => 3, 'Apr' => 4, 'May' => 5, 'Jun' => 6,
       'Jul' => 7, 'Aug' => 8, 'Sep' => 9, 'Oct' => 10, 'Nov' => 11, 'Dec' => 12 

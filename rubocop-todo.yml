@@ -25,12 +25,6 @@ IndentationWidth:
 LineLength:
   Max: 179
 
-# Offence count: 5
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-MethodDefParentheses:
-  Enabled: false
-
 # Offence count: 1
 # Configuration parameters: CountComments.
 MethodLength:

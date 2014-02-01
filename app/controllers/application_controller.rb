@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
                 error: "You need to login to view that page" if current_user.nil?
   end
 
- def login user_id 
+ def login(user_id) 
    if session[:user_id]
      raise "user already logged in"
    else
