@@ -1,5 +1,3 @@
-inherit_from: rubocop-todo.yml
-
 AllCops:
   Includes:
     - Rakefile
@@ -13,3 +11,6 @@ AllCops:
 
 LineLength:
   Max: 80 
+
+Documentation:
+  Enabled: false

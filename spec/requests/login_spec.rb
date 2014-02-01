@@ -10,7 +10,7 @@ describe 'Login' do
       end
 
       it 'has a 200 status code' do
-        expect(page.status_code).to be (200)
+        expect(page.status_code).to be 200
       end
 
     end

@@ -119,10 +119,10 @@ describe 'Transactions' do
         visit transaction_path @transaction
       end
 
-        it 'loads the show transaction page' do
-          expect(page.current_path).to eq transaction_path @transaction
-          expect(page.status_code).to eq 200
-        end
+      it 'loads the show transaction page' do
+        expect(page.current_path).to eq transaction_path @transaction
+        expect(page.status_code).to eq 200
+      end
     end
   end
 

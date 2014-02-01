@@ -15,10 +15,10 @@ describe Transaction do
       it { should validate_numericality_of(:amount).is_greater_than 0.00 }
     end
 
-   describe 'associations' do
-     it { should have_many(:explainations).dependent(:destroy) }
-     it { should have_many(:categories).through(:explainations) }
-   end
+    describe 'associations' do
+      it { should have_many(:explainations).dependent(:destroy) }
+      it { should have_many(:categories).through(:explainations) }
+    end
 
   end
 
@@ -136,9 +136,9 @@ describe Transaction do
         expect(@transaction.value).to be > 0.00
       end
 
-    it 'returns the same absolute value as amount' do
-      expect(@transaction.value.abs).to eq @transaction.amount
-    end
+      it 'returns the same absolute value as amount' do
+        expect(@transaction.value.abs).to eq @transaction.amount
+      end
 
     end
 

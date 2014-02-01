@@ -11,7 +11,7 @@ describe 'Users' do
     describe 'the page' do
 
       it 'renders the new user page' do
-        expect(page.status_code).to be (200)
+        expect(page.status_code).to be 200
       end
 
       it 'prompts to create a new user' do
