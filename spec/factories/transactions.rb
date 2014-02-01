@@ -3,11 +3,11 @@
 
 FactoryGirl.define do
   factory :transaction do
-    description "MyString"
-    date "2013-09-11"
+    description 'MyString'
+    date '2013-09-11'
     amount 100.00
-    payment_method "MyString"
-    reference "MyString"
+    payment_method 'MyString'
+    reference 'MyString'
     is_credit true
 
     trait :invalid do

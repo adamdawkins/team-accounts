@@ -30,11 +30,6 @@ LineLength:
 MethodLength:
   Max: 14
 
-# Offence count: 1
-# Cop supports --auto-correct.
-NumericLiterals:
-  MinDigits: 14
-
 # Offence count: 2
 ParenthesesAsGroupedExpression:
   Enabled: false
@@ -42,12 +37,6 @@ ParenthesesAsGroupedExpression:
 # Offence count: 1
 # Cop supports --auto-correct.
 RedundantSelf:
-  Enabled: false
-
-# Offence count: 390
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-StringLiterals:
   Enabled: false
 
 # Offence count: 1

@@ -1,27 +1,27 @@
 require 'spec_helper'
 
-describe "transactions/show.html.haml" do
-  describe "displays transaction attributes" do
+describe 'transactions/show.html.haml' do
+  describe 'displays transaction attributes' do
     before :each do
       @transaction = FactoryGirl.create :transaction
       mock_login
       visit transaction_path @transaction
     end
 
-    it "displays the transaction description" do
+    it 'displays the transaction description' do
       expect(page).to have_content @transaction.description
     end
 
-    it "displays the transaction amount" do
+    it 'displays the transaction amount' do
       expect(page).to have_content @transaction.amount
     end
 
-    it "displays the transaction date" do
+    it 'displays the transaction date' do
       expect(page).to have_content @transaction.date
     end
   end
 
-  context "tranasction without explainations" do
+  context 'tranasction without explainations' do
     before :each do
       @transaction = FactoryGirl.create :transaction
       mock_login
@@ -29,11 +29,11 @@ describe "transactions/show.html.haml" do
     end
 
     it "doesn't display an explainations heading" do
-      expect(page).to_not have_selector "h2", text: "Explainations"
+      expect(page).to_not have_selector 'h2', text: 'Explainations'
     end
   end
 
-  context "transaction with explainations" do
+  context 'transaction with explainations' do
     before :each do
       mock_login
       @transaction = FactoryGirl.create :transaction
@@ -41,32 +41,32 @@ describe "transactions/show.html.haml" do
       visit transaction_path @transaction
     end
 
-    it "displays an explainations heading" do
-      expect(page).to have_content "Explainations"
+    it 'displays an explainations heading' do
+      expect(page).to have_content 'Explainations'
     end
 
-    it "displays the explainations" do
-      expect(page).to have_selector "#table_explainations tbody tr", count: @transaction.explainations.length
+    it 'displays the explainations' do
+      expect(page).to have_selector '#table_explainations tbody tr', count: @transaction.explainations.length
     end
   end
 
-  context "transaction with unexplained amount" do
+  context 'transaction with unexplained amount' do
     before :each do
       mock_login
       @transaction = FactoryGirl.create :transaction
       visit transaction_path @transaction
     end
 
-    it "displays the unexplained amount" do
-      expect(page).to have_content "unexplained"
+    it 'displays the unexplained amount' do
+      expect(page).to have_content 'unexplained'
     end
 
-    it "displays the new explaination form" do
-     expect(page).to have_selector "#new_explaination_form"
+    it 'displays the new explaination form' do
+     expect(page).to have_selector '#new_explaination_form'
     end
   end
 
-  context "transaction with no unexplained amount" do
+  context 'transaction with no unexplained amount' do
     before :each do
       mock_login
       @transaction = FactoryGirl.create :transaction, amount: 10.00
@@ -74,12 +74,12 @@ describe "transactions/show.html.haml" do
       visit transaction_path @transaction
     end
 
-    it "displays text saying transaction is explained" do
-      expect(page).to have_selector "span.label", text: "explained"
+    it 'displays text saying transaction is explained' do
+      expect(page).to have_selector 'span.label', text: 'explained'
     end
 
-    it "does not display the new explaination form" do
-     expect(page).to_not have_selector "#new_explaination_form"
+    it 'does not display the new explaination form' do
+     expect(page).to_not have_selector '#new_explaination_form'
     end
   end
 end

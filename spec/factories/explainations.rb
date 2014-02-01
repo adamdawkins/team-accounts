@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :explaination do
-    description "MyString"
+    description 'MyString'
     amount 1.00
     association :transaction, factory: :transaction
     association :category, factory: :category

@@ -7,12 +7,12 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user
     redirect_to login_path,
-                error: "You need to login to view that page" if current_user.nil?
+                error: 'You need to login to view that page' if current_user.nil?
   end
 
  def login(user_id)
    if session[:user_id]
-     fail "user already logged in"
+     fail 'user already logged in'
    else
      session[:user_id] = user_id
    end

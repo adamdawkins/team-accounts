@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
   before_filter :authenticate_user
 
   def index
-    @transactions = Transaction.order "date DESC"
+    @transactions = Transaction.order 'date DESC'
   end
 
   def new
@@ -12,10 +12,10 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new transaction_params
     if @transaction.save
-      flash[:success] = "Transaction created successfully"
+      flash[:success] = 'Transaction created successfully'
       redirect_to @transaction
     else
-      flash[:alert] = "The transaction was invalid"
+      flash[:alert] = 'The transaction was invalid'
       redirect_to new_transaction_path
     end
   end
@@ -27,10 +27,10 @@ class TransactionsController < ApplicationController
   def import
     file = params[:file]
     if file.nil?
-      redirect_to transactions_path, alert: "No CSV found to upload"
+      redirect_to transactions_path, alert: 'No CSV found to upload'
     else
       Transaction.import file
-      redirect_to transactions_path, notice: "Transactions imported successfully"
+      redirect_to transactions_path, notice: 'Transactions imported successfully'
     end
   end
 

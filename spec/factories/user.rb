@@ -3,11 +3,11 @@ FactoryGirl.define do
     sequence :email do |n|
       "person#{n}@example.com"
     end
-    password "password"
-    password_confirmation "password"
+    password 'password'
+    password_confirmation 'password'
 
     trait :invalid do
-      password_confirmation "not matching"
+      password_confirmation 'not matching'
     end
   end
 end

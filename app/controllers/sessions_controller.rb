@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def new
     if !session[:user_id].nil?
-      flash[:notice] = "You are already logged in."
+      flash[:notice] = 'You are already logged in.'
       redirect_to root_path
     end
   end
@@ -10,17 +10,17 @@ class SessionsController < ApplicationController
     user = User.find_by_email params[:email]
     if user && user.authenticate(params[:password])
       login user.id
-      flash[:success] = "You have logged in successfully."
+      flash[:success] = 'You have logged in successfully.'
       redirect_to root_path
     else
-      flash[:error] = "That email address or password is incorrect."
+      flash[:error] = 'That email address or password is incorrect.'
       render :new
     end
   end
 
   def destroy
     session[:user_id] = nil
-    flash[:success] = "You have logged out successfully."
+    flash[:success] = 'You have logged out successfully.'
     redirect_to root_path
   end
 end

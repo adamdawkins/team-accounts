@@ -79,7 +79,7 @@ class Transaction < ActiveRecord::Base
       'Jul' => 7, 'Aug' => 8, 'Sep' => 9, 'Oct' => 10, 'Nov' => 11, 'Dec' => 12
     }
 
-    day, month, year = date_string.split(" ")
+    day, month, year = date_string.split(' ')
     month = months[month]
     Date.new(year.to_i, month, day.to_i)
   end

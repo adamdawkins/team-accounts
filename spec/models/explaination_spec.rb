@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 describe Explaination do
-  describe "basic model" do
-    it "has a valid factory" do
+  describe 'basic model' do
+    it 'has a valid factory' do
       expect(FactoryGirl.create(:explaination)).to be_valid
     end
 
-    describe "basic attribute validation" do
+    describe 'basic attribute validation' do
 
       it { should validate_presence_of :description }
       it { should belong_to :transaction }
@@ -18,7 +18,7 @@ describe Explaination do
     end
   end
 
-  describe "amount validation" do
+  describe 'amount validation' do
     before :all do
       @category = FactoryGirl.create :category
       @transaction = FactoryGirl.create :transaction, amount: 100.00
@@ -30,7 +30,7 @@ describe Explaination do
       end
     end
 
-    it "is invalid if amount is greater than transaction unexplained amount" do
+    it 'is invalid if amount is greater than transaction unexplained amount' do
       expect(
         FactoryGirl.build :explaination,
                           transaction_id: @transaction.id,

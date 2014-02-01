@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :balance do
-    date "2013-09-11"
-    amount "100.00"
+    date '2013-09-11'
+    amount '100.00'
   end
 end
