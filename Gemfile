@@ -68,3 +68,6 @@ group :development, :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner', '1.0.1'
 end
+
+
+gem 'simplecov', require:  false
