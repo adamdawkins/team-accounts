@@ -54,5 +54,4 @@ class TransactionImport
   def process_csv
     SmarterCSV.process(@file.path, convert_values_to_numeric: true)
   end
-
 end

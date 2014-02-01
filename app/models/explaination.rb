@@ -1,5 +1,4 @@
 class Explaination < ActiveRecord::Base
-
   validates :description, presence: true
   validates :transaction, presence: true
   validates :category, presence: true
@@ -17,7 +16,6 @@ class Explaination < ActiveRecord::Base
       transaction = Transaction.find(transaction_id)
       errors.add(:base, error_message) if amount > transaction.unexplained_amount
     end
-
   end
  
 end
