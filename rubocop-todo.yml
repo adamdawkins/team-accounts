@@ -35,10 +35,5 @@ ParenthesesAsGroupedExpression:
   Enabled: false
 
 # Offence count: 1
-# Cop supports --auto-correct.
-RedundantSelf:
-  Enabled: false
-
-# Offence count: 1
 UselessAssignment:
   Enabled: false
