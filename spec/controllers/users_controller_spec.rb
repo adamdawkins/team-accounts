@@ -29,9 +29,9 @@ describe UsersController do
       end
 
       it "creates a new user" do 
-        expect {
+        expect do
           post :create, user: FactoryGirl.attributes_for(:user)
-        }.to change(User, :count).by(1)
+        end.to change(User, :count).by(1)
       end
 
       it "re-directs to the new user" do
@@ -51,9 +51,9 @@ describe UsersController do
       end
 
       it "does not create a user" do 
-        expect {
+        expect do
           post :create, user: FactoryGirl.attributes_for(:user, :invalid)
-        }.to_not change(User, :count)
+        end.to_not change(User, :count)
       end
 
       it "re-renders the new template" do

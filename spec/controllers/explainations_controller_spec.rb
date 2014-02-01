@@ -10,9 +10,9 @@ describe ExplainationsController do
       end
 
       it "creates a new explaination record in the database" do
-        expect {
+        expect do
           post :create, explaination: FactoryGirl.attributes_for(:explaination, transaction_id: @transaction.id, category_id: @category.id)
-        }.to change(Explaination, :count).by(1)
+        end.to change(Explaination, :count).by(1)
       end
 
     context "with valid attributes" do
@@ -39,9 +39,9 @@ describe ExplainationsController do
         controller.stub! :authenticate_user
       end
       it "does not create an explaination" do 
-        expect {
+        expect do
           post :create, explaination: FactoryGirl.attributes_for(:explaination, :invalid)
-        }.to_not change(Explaination, :count)
+        end.to_not change(Explaination, :count)
       end
 
       it "sets an error message" do

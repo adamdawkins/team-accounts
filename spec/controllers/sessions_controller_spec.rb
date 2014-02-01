@@ -41,8 +41,8 @@ describe SessionsController do
       before :each do 
         @user = FactoryGirl.create :user
         post 'create',
-          email:    @user.email,
-          password: @user.password 
+             email:    @user.email,
+             password: @user.password 
       end
 
       it "creates a user_id session object with the user id" do
@@ -62,8 +62,8 @@ describe SessionsController do
     context "no user with specified email address" do
       before :each do
         post 'create',
-          email: 'not-an-existing-email-address@example.com',
-          password: 'password'
+             email: 'not-an-existing-email-address@example.com',
+             password: 'password'
       end
 
       it "doesn't create a user_id object in the session" do
@@ -85,8 +85,8 @@ describe SessionsController do
       before :each do
         @user = FactoryGirl.create :user
         post 'create',
-          email:    @user.email,
-          password: "#{@user.password}123 "
+             email:    @user.email,
+             password: "#{@user.password}123 "
       end
 
       it "doesn't create a user_id object in the session" do

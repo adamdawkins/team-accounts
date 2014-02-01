@@ -1,13 +1,10 @@
 require 'spec_helper'
 
 describe TransactionImport do
-  let(:test_file) {Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv')))
-  }
+  let(:test_file) {Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv')))}
 
   before :each do
-    @transaction_import = TransactionImport.new(
-      file: test_file
-    )
+    @transaction_import = TransactionImport.new(file: test_file)
   end
 
   describe "#process_csv" do

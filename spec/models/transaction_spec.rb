@@ -62,11 +62,11 @@ describe Transaction do
     context "with explainations" do
       before :all do
         @transaction = FactoryGirl.create :transaction
-        2.times {
+        2.times do
           FactoryGirl.create :explaination,
-          transaction_id: @transaction.id,
-          amount: 10.00
-        }
+                             transaction_id: @transaction.id,
+                             amount: 10.00
+        end
       end
 
       it "returns a float" do 
@@ -83,11 +83,11 @@ describe Transaction do
   describe "#unexplained_amount" do 
     before :all do
       @transaction = FactoryGirl.create :transaction, amount: 100.00
-      2.times {
+      2.times do
         FactoryGirl.create :explaination,
-                            transaction_id: @transaction.id,
-                            amount: 10.00
-      }
+                           transaction_id: @transaction.id,
+                           amount: 10.00
+      end
     end
     context "transaction with explainations" do
       it "returns a float" do
@@ -219,9 +219,9 @@ describe Transaction do
 
   describe "#import" do
     it "imports the transactions in the file" do
-      expect {
+      expect do
         Transaction.import Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv')))  
-      }.to change(Transaction, :count).by 3
+      end.to change(Transaction, :count).by 3
     end
   end
 

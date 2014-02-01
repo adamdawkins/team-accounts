@@ -7,8 +7,8 @@ class TransactionImport
 
   def save
     if imported_transactions.map(&:valid?).all?
-      imported_transactions.each &:save 
-      imported_balances.each &:save 
+      imported_transactions.each(&:save)
+      imported_balances.each(&:save)
       true
     end 
   end
@@ -46,15 +46,13 @@ class TransactionImport
   end
 
   def self.build_balance_from_csv_row row
-      unless row[:balance].nil?
-      balance = Balance.new date: row[:date], amount: row[:balance]
-      end
+    balance = Balance.new date: row[:date], amount: row[:balance] unless row[:balance].nil?
 
     balance
   end
   
   def process_csv
-    SmarterCSV.process(@file.path, {convert_values_to_numeric: true})
+    SmarterCSV.process(@file.path, convert_values_to_numeric: true)
   end
 
 end

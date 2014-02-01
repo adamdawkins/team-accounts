@@ -24,9 +24,9 @@ describe TransactionsController do
       end
 
       it "creates a new transaction record in the database" do
-        expect {
+        expect do
           post :create, transaction: FactoryGirl.attributes_for(:transaction)
-        }.to change(Transaction, :count).by(1)
+        end.to change(Transaction, :count).by(1)
       end
 
       it "redirects to the show action" do
@@ -53,9 +53,9 @@ describe TransactionsController do
         controller.stub! :authenticate_user
       end
       it "does not create a transaction" do 
-        expect {
+        expect do
           post :create, transaction: FactoryGirl.attributes_for(:transaction, :invalid)
-        }.to_not change(Transaction, :count)
+        end.to_not change(Transaction, :count)
       end
 
       it "re-renders the new template" do
@@ -111,12 +111,10 @@ describe TransactionsController do
     end
 
     it "creates transactions for each transaction in the file" do
-      expect {
+      expect do
       post 'import', file: Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv')))  
-      }.to change(Transaction, :count).by 3
-
+      end.to change(Transaction, :count).by 3
     end
-
 
   end
 

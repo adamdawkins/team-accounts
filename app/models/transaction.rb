@@ -1,10 +1,9 @@
 class Transaction < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
 
-  validates_presence_of :date
-  validates_presence_of :description
-  validates_presence_of :amount
-  validates :amount, numericality: {greater_than: 0.00}
+  validates :date, presence: true
+  validates :description, presence: true
+  validates :amount, presence: true, numericality: {greater_than: 0.00}
 
   has_many :explainations, dependent: :destroy
   has_many :categories, through: :explainations
@@ -15,7 +14,7 @@ class Transaction < ActiveRecord::Base
 
   def explained_amount
     if explainations.length > 0
-      (explainations.collect(&:amount).reduce :+).to_f
+      (explainations.map(&:amount).reduce :+).to_f
     else
       0.00
     end

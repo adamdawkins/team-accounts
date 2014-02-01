@@ -22,20 +22,20 @@ describe Explaination do
     before :all do
       @category = FactoryGirl.create :category
       @transaction = FactoryGirl.create :transaction, amount: 100.00
-      2.times {
+      2.times do
         FactoryGirl.create :explaination,
-                            transaction_id: @transaction.id,
-                            category_id: @category.id,
-                            amount: 10.00
-      }
+                           transaction_id: @transaction.id,
+                           category_id: @category.id,
+                           amount: 10.00
+      end
     end
     
     it "is invalid if amount is greater than transaction unexplained amount" do 
       expect(
         FactoryGirl.build :explaination,
-                           transaction_id: @transaction.id,
-                           category_id: @category.id,
-                           amount: 90.00
+                          transaction_id: @transaction.id,
+                          category_id: @category.id,
+                          amount: 90.00
       ).to be_invalid 
     end
 
