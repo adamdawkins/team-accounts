@@ -37,9 +37,10 @@ class Transaction < ActiveRecord::Base
   end
 
   def label
-    if explainations.length > 1
+    explainations_length = explainations.length
+    if explainations_length > 1
       'split transaction'
-    elsif explainations.length == 1
+    elsif explainations_length == 1
       explainations.first.description
     else
       description
@@ -62,12 +63,14 @@ class Transaction < ActiveRecord::Base
       @transaction.date = hash['Date']
       @transaction.description = hash['Description']
 
-      if hash['Paid in'].nil?
+      paid_in = hash['Paid in']
+
+      if paid_in.nil?
         @transaction.is_credit = false
         @transaction.amount = hash['Paid out'].to_f
       else
         @transaction.is_credit = true
-        @transaction.amount = hash['Paid in'].to_f
+        @transaction.amount = paid_in.to_f
       end
 
       @transaction.save
