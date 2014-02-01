@@ -21,11 +21,6 @@ IndentationConsistency:
 IndentationWidth:
   Enabled: false
 
-# Offence count: 2
-# Cop supports --auto-correct.
-LeadingCommentSpace:
-  Enabled: false
-
 # Offence count: 75
 LineLength:
   Max: 179

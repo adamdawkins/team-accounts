@@ -21,7 +21,7 @@ describe ApplicationController do
 
     context "user logged in" do
       before :each do
-        #stub the login
+        # stub the login
         @user = FactoryGirl.create :user
 
         session[:user_id] = @user.id
