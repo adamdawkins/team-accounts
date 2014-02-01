@@ -25,11 +25,6 @@ IndentationWidth:
 LineLength:
   Max: 179
 
-# Offence count: 1
-# Configuration parameters: CountComments.
-MethodLength:
-  Max: 14
-
 # Offence count: 2
 ParenthesesAsGroupedExpression:
   Enabled: false

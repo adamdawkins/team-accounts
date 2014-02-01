@@ -55,6 +55,7 @@ class Transaction < ActiveRecord::Base
   end
 
   def self.import(file)
+    # method has too many lines (to be replaced)
     CSV.foreach(file.path, headers: true) do |row|
       hash = row.to_hash
       @transaction = Transaction.new
