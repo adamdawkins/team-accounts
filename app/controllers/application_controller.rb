@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
  def login(user_id) 
    if session[:user_id]
-     raise "user already logged in"
+     fail "user already logged in"
    else
      session[:user_id] = user_id
    end
