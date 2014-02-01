@@ -3,7 +3,7 @@ class Transaction < ActiveRecord::Base
 
   validates :date, presence: true
   validates :description, presence: true
-  validates :amount, presence: true, numericality: {greater_than: 0.00}
+  validates :amount, presence: true, numericality: { greater_than: 0.00 }
 
   has_many :explainations, dependent: :destroy
   has_many :categories, through: :explainations

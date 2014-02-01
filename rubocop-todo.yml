@@ -55,12 +55,6 @@ SignalException:
 SpaceAfterColon:
   Enabled: false
 
-# Offence count: 8
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces, SupportedStyles.
-SpaceInsideHashLiteralBraces:
-  Enabled: false
-
 # Offence count: 2
 # Cop supports --auto-correct.
 SpaceInsideParens:
