@@ -65,7 +65,7 @@ describe 'transactions/show.html.haml' do
     end
 
     it 'displays the new explaination form' do
-     expect(page).to have_selector '#new_explaination_form'
+      expect(page).to have_selector '#new_explaination_form'
     end
   end
 
@@ -85,7 +85,7 @@ describe 'transactions/show.html.haml' do
     end
 
     it 'does not display the new explaination form' do
-     expect(page).to_not have_selector '#new_explaination_form'
+      expect(page).to_not have_selector '#new_explaination_form'
     end
   end
 end

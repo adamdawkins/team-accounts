@@ -17,9 +17,6 @@ FavorUnlessOverNegatedIf:
 IndentationConsistency:
   Enabled: false
 
-# Offence count: 12
-IndentationWidth:
-  Enabled: false
 
 # Offence count: 2
 ParenthesesAsGroupedExpression:

@@ -1,15 +1,16 @@
 require 'spec_helper'
 
 describe ApplicationController do
+
   describe '#authenticate_user' do
 
-      controller do
-        before_filter :authenticate_user
+    controller do
+      before_filter :authenticate_user
 
-        def index
-          render text: 'index'
-        end
+      def index
+        render text: 'index'
       end
+    end
 
     context 'user not logged in' do
 

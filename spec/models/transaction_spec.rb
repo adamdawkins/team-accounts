@@ -9,7 +9,6 @@ describe Transaction do
     let(:transaction) { FactoryGirl.build(:transaction) }
 
     describe 'validation' do
-
       it { should validate_presence_of :date }
       it { should validate_presence_of :description }
       it { should validate_presence_of :amount }
@@ -17,8 +16,8 @@ describe Transaction do
     end
 
    describe 'associations' do
-    it { should have_many(:explainations).dependent(:destroy) }
-    it { should have_many(:categories).through(:explainations) }
+     it { should have_many(:explainations).dependent(:destroy) }
+     it { should have_many(:categories).through(:explainations) }
    end
 
   end

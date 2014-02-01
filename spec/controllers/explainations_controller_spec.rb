@@ -3,30 +3,30 @@ require 'spec_helper'
 describe ExplainationsController do
 
   describe '#create' do
-      before :each do
-        controller.stub! :authenticate_user
-        @transaction = FactoryGirl.create :transaction
-        @category = FactoryGirl.create :category
-      end
+    before :each do
+      controller.stub! :authenticate_user
+      @transaction = FactoryGirl.create :transaction
+      @category = FactoryGirl.create :category
+    end
 
-      it 'creates a new explaination record in the database' do
-        expect do
-          post :create, explaination:
-            FactoryGirl.attributes_for(:explaination,
-                                       transaction_id: @transaction.id,
-                                       category_id: @category.id
-                                      )
-        end.to change(Explaination, :count).by(1)
-      end
+    it 'creates a new explaination record in the database' do
+      expect do
+        post :create, explaination:
+          FactoryGirl.attributes_for(:explaination,
+                                     transaction_id: @transaction.id,
+                                     category_id: @category.id
+                                    )
+      end.to change(Explaination, :count).by(1)
+    end
 
     context 'with valid attributes' do
       before :each do
-          post :create, explaination:
-            FactoryGirl.attributes_for(
-              :explaination,
-              transaction_id: @transaction.id,
-              category_id: @category.id
-          )
+        post :create, explaination:
+          FactoryGirl.attributes_for(
+            :explaination,
+            transaction_id: @transaction.id,
+            category_id: @category.id
+        )
       end
 
       it 'assigns the @explaination variable' do

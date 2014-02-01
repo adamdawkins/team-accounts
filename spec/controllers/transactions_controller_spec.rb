@@ -36,8 +36,8 @@ describe TransactionsController do
       end
 
       it 'redirects to the show action' do
-          post :create, transaction: FactoryGirl.attributes_for(:transaction)
-          expect(response).to redirect_to(Transaction.last)
+        post :create, transaction: FactoryGirl.attributes_for(:transaction)
+        expect(response).to redirect_to(Transaction.last)
       end
 
       it 'sets a success message' do
