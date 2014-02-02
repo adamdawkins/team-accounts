@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    unless session[:user_id].nil?
+    if session[:user_id]
       flash[:notice] = 'You are already logged in.'
       redirect_to root_path
     end
