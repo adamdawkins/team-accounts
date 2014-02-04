@@ -3,9 +3,9 @@ require 'spec_helper'
 describe TransactionsController do
 
   let(:test_file) do
-    Rack::Test::UploadedFile.new(
-      File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv'))
-    )
+    Rack::Test::UploadedFile.new(File.open(File.join(
+      Rails.root, '/spec/fixtures/transactions_upload.csv'
+    )))
   end
 
   describe '#new' do
