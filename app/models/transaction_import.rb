@@ -46,6 +46,8 @@ class TransactionImport
     imported_balances
   end
 
+  # Not worried about :reek:DuplicateMethodCall on row[:paid_in]
+  # Separating it results in 'TooManyStatements' anyway
   def self.build_transaction_from_csv_row(row)
     transaction = Transaction.new(
       row.slice(*Transaction.accessible_attributes)
