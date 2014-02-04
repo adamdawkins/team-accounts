@@ -65,6 +65,5 @@ describe TransactionImportsController do
         expect(response).to render_template 'new'
       end
     end
-
   end
 end

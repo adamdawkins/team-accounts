@@ -9,7 +9,7 @@ class TransactionImportsController < ApplicationController
       flash[:success] = 'Transactions imported successfully'
       redirect_to root_path
     else
-      flash[:error] = 'No CSV found to upload' unless @transaction_import.file
+      flash[:alert] = 'No CSV found to upload' unless @transaction_import.file
       render :new
     end
   end

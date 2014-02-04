@@ -12,10 +12,15 @@ class TransactionImport
   end
 
   def save
-    if imported_transactions.map(&:valid?).all?
+    if imported_transactions.length > 0 &&
+       imported_transactions.map(&:valid?).all?
+
       imported_transactions.each(&:save)
       imported_balances.each(&:save)
+
       true
+    else
+      false
     end
   end
 

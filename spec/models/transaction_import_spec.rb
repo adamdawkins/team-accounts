@@ -7,6 +7,12 @@ describe TransactionImport do
     )
   end
 
+  let(:invalid_csv_file) do
+    Rack::Test::UploadedFile.new(File.open(File.join(
+      Rails.root, '/spec/fixtures/invalid_transactions_upload.csv'
+    )))
+  end
+
   context 'with valid transactions' do
 
     before :each do
@@ -124,6 +130,10 @@ describe TransactionImport do
 
       it 'does not save any balances to the database' do
         expect { @transaction_import.save }.to_not change(Balance, :count)
+      end
+
+      it 'returns false' do
+        expect(@transaction_import.save).to eq false
       end
     end
 
