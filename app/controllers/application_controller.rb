@@ -11,12 +11,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # This isn't actually smelling of :reek:ControlParameter  
-  def login(user_id)
+  def create_user_session(id)
     if session[:user_id]
       fail 'user already logged in'
     else
-      session[:user_id] = user_id
+      session[:user_id] = id
     end
   end
 end

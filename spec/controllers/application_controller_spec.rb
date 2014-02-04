@@ -36,12 +36,12 @@ describe ApplicationController do
     end
   end
 
-  describe '#login' do
+  describe '#create_user_session' do
     context 'user not logged in' do
 
       before :each do
         session[:user_id] = nil
-        controller.login 1
+        controller.create_user_session 1
       end
 
       it 'sets session[:user_id] to the passed id' do
@@ -55,7 +55,9 @@ describe ApplicationController do
       end
 
       it 'throws an error' do
-        proc { controller.login(1) }.should raise_error 'user already logged in'
+        expect { controller.create_user_session(1) }.to(
+          raise_error 'user already logged in'
+        )
       end
 
     end
