@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # This isn't actually smelling of :reek:ControlParameter  
   def login(user_id)
     if session[:user_id]
       fail 'user already logged in'
