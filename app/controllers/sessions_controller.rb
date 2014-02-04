@@ -9,9 +9,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by_email params[:email]
     if user && user.authenticate(params[:password])
-      create_user_session user.id
-      flash[:success] = 'You have logged in successfully.'
-      redirect_to root_path
+      login user.id
     else
       flash[:error] = 'That email address or password is incorrect.'
       render :new
@@ -21,6 +19,14 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     flash[:success] = 'You have logged out successfully.'
+    redirect_to root_path
+  end
+
+  private
+
+  def login(user_id)
+    create_user_session user_id
+    flash[:success] = 'You have logged in successfully.'
     redirect_to root_path
   end
 end
