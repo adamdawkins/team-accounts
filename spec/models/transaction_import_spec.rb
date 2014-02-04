@@ -110,9 +110,9 @@ describe TransactionImport do
       end
     end
   end
-  
+
   context 'with no file' do
-    
+
     before :each do
       @transaction_import = TransactionImport.new(file: nil)
     end

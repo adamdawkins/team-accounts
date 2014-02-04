@@ -54,5 +54,4 @@ class Transaction < ActiveRecord::Base
   def self.accessible_attributes
     [:date, :description, :amount]
   end
-
 end
