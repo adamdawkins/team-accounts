@@ -220,25 +220,4 @@ describe Transaction do
       end
     end
   end
-
-  describe '#import' do
-
-    let(:test_file) do
-      Rack::Test::UploadedFile.new(
-        File.open File.join(Rails.root,
-                            '/spec/fixtures/transactions_upload.csv')
-      )
-    end
-
-    it 'has too many lines (14/10)' do
-      pending
-    end
-
-    it 'imports the transactions in the file' do
-      expect do
-        Transaction.import test_file
-      end.to change(Transaction, :count).by 3
-    end
-  end
-
 end

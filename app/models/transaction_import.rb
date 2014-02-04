@@ -1,8 +1,14 @@
 class TransactionImport
+  include ActiveModel::Model
+
   attr_accessor :file
 
   def initialize(attributes = {})
-    attributes.each { |name, value| send("#{name}=", value) }
+    attributes.each { |name, value| send("#{name}=", value) } if attributes
+  end
+
+  def persisted?
+    false
   end
 
   def save
@@ -53,6 +59,10 @@ class TransactionImport
   end
 
   def process_csv
-    SmarterCSV.process(@file.path, convert_values_to_numeric: true)
+    if @file
+      SmarterCSV.process(@file.path, convert_values_to_numeric: true)
+    else
+      []
+    end
   end
 end

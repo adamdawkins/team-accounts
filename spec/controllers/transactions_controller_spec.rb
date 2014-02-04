@@ -114,18 +114,4 @@ describe TransactionsController do
       expect(response).to render_template 'index'
     end
   end
-
-  describe '#import' do
-    before :each do
-      controller.stub! :authenticate_user
-    end
-
-    it 'creates transactions for each transaction in the file' do
-      expect do
-        post 'import', file: test_file
-      end.to change(Transaction, :count).by 3
-    end
-
-  end
-
 end

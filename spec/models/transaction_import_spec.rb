@@ -1,23 +1,29 @@
 require 'spec_helper'
 
 describe TransactionImport do
-  let(:test_file) do
+  let(:valid_csv_file) do
     Rack::Test::UploadedFile.new(
       File.open(File.join(Rails.root, '/spec/fixtures/transactions_upload.csv'))
     )
   end
 
-  before :each do
-    @transaction_import = TransactionImport.new(file: test_file)
-  end
-
-  describe '#process_csv' do
-    it 'returns an array of CSV rows' do
-      expect(@transaction_import.process_csv).to be_kind_of Array
-    end
-  end
-
   context 'with valid transactions' do
+
+    before :each do
+      @transaction_import = TransactionImport.new(file: valid_csv_file)
+    end
+
+    describe '#process_csv' do
+      it 'returns an array of CSV rows' do
+        expect(@transaction_import.process_csv).to be_kind_of Array
+      end
+    end
+
+    describe 'persisted?' do
+      it 'returns false' do
+        expect(@transaction_import.persisted?).to eq false
+      end
+    end
 
     describe 'TransactionImport.build_transaction_from_csv_row' do
       before :each do
@@ -104,4 +110,29 @@ describe TransactionImport do
       end
     end
   end
+  
+  context 'with no file' do
+    
+    before :each do
+      @transaction_import = TransactionImport.new(file: nil)
+    end
+
+    describe '#save' do
+      it 'does not save any transactions to the database' do
+        expect { @transaction_import.save }.to_not change(Transaction, :count)
+      end
+
+      it 'does not save any balances to the database' do
+        expect { @transaction_import.save }.to_not change(Balance, :count)
+      end
+    end
+
+    describe '#process_csv' do
+      it 'returns an empty array' do
+        expect(@transaction_import.process_csv).to be_kind_of Array
+        expect(@transaction_import.process_csv.length).to eq 0
+      end
+    end
+  end
+
 end

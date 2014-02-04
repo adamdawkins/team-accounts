@@ -55,25 +55,4 @@ class Transaction < ActiveRecord::Base
     [:date, :description, :amount]
   end
 
-  def self.import(file)
-    # method has too many lines (to be replaced)
-    CSV.foreach(file.path, headers: true) do |row|
-      hash = row.to_hash
-      @transaction = Transaction.new
-      @transaction.date = hash['Date']
-      @transaction.description = hash['Description']
-
-      paid_in = hash['Paid in']
-
-      if paid_in.nil?
-        @transaction.is_credit = false
-        @transaction.amount = hash['Paid out'].to_f
-      else
-        @transaction.is_credit = true
-        @transaction.amount = paid_in.to_f
-      end
-
-      @transaction.save
-    end
-  end
 end
