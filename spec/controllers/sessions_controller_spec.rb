@@ -81,7 +81,7 @@ describe SessionsController do
       end
     end
 
-    context 'incorrect. password' do
+    context 'with incorrect password' do
       before :each do
         @user = FactoryGirl.create :user
         post 'create',
