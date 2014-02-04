@@ -21,10 +21,11 @@ class Transaction < ActiveRecord::Base
   end
 
   def value
+    value = amount.to_f
     if is_credit
-      amount.to_f
+      value
     else
-      amount.to_f * -1
+      value * -1
     end
   end
 
