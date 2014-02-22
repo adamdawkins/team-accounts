@@ -7,14 +7,17 @@ describe Explaination do
     end
 
     describe 'basic attribute validation' do
-
       it { should validate_presence_of :description }
-      it { should belong_to :transaction }
-      it { should belong_to :category }
       it { should validate_presence_of :transaction }
       it { should validate_presence_of :category }
       it { should validate_presence_of :amount }
       it { should validate_numericality_of(:amount).is_greater_than 0.00 }
+    end
+
+    describe 'associations' do
+      it { should belong_to :transaction }
+      it { should belong_to :category }
+      it { should belong_to :squad }
     end
   end
 

@@ -10,4 +10,8 @@ User.create({
 
 categories = ["training equipment", "kit", "health and safety", "administrative costs", "registration fees", "grants", "player registration", "other"]
 
-categories.each {|c| Category.create({name: c}) }
+categories.each {|category_name| Category.create({name: category_name}) }
+
+squads = ["Cadet Flag", "Junior Flag", "Youth Contact", "Junior Contact"]
+
+squads.each {|squad_name| Squad.create({name: squad_name}) }

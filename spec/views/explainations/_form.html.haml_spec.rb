@@ -26,4 +26,8 @@ describe 'explainations/_form' do
   it 'displays a category dropdown' do
     expect(response).to include 'explaination[category_id]'
   end
+
+  it 'displays a squad dropdown' do
+    expect(response).to include 'explaination[squad_id]'
+  end
 end

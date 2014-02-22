@@ -10,7 +10,12 @@
           = f.text_field :description
       .row
         .large-8.columns
+          = f.label :category_id
           = f.collection_select :category_id, Category.all, :id, :name
+      .row
+        .large-8.columns
+          = f.label :squad_id
+          = select_tag 'explaination[squad_id]', options_from_collection_for_select(Squad.all, :id, :name),include_blank: true
       .row
         .large-2.columns
           .row.collapse

@@ -24,9 +24,17 @@
         %tr
           %td Reason
           %td Amount
+          %td Category
+          %td Squad
       %tbody     
         - @transaction.explainations.each do |explaination|
           %tr
             %td= explaination.description
             %td!= number_to_currency explaination.amount
+            %td 
+              - if explaination.category.present?
+                = explaination.category.name
+            %td
+              - if explaination.squad.present?
+                = explaination.squad.name
 

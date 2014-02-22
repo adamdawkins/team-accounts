@@ -7,6 +7,7 @@ class Explaination < ActiveRecord::Base
 
   belongs_to :transaction
   belongs_to :category
+  belongs_to :squad
 
   private
 

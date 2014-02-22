@@ -18,7 +18,8 @@ class ExplainationsController < ApplicationController
       :amount,
       :is_credit,
       :transaction_id,
-      :category_id
+      :category_id,
+      :squad_id
     )
   end
 end
