@@ -8,6 +8,15 @@ class Transaction < ActiveRecord::Base
   has_many :explainations, dependent: :destroy
   has_many :categories, through: :explainations
 
+  def balance_value
+    balance = Balance.find_by_date date
+    if balance.present?
+      number_to_currency balance.amount
+    else
+      ''
+    end
+  end
+
   def unexplained_amount
     (amount - explained_amount).to_f
   end

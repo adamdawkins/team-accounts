@@ -41,6 +41,41 @@ describe Transaction do
 
   end
 
+  describe '#balance_value' do
+    before :all do
+      @transaction = FactoryGirl.create :transaction
+    end
+
+    it 'returns a string' do
+      expect(@transaction.balance_value).to be_kind_of String
+    end
+
+    context 'no balance for date' do
+      before :all do
+        Balance.destroy_all
+      end
+      it 'returns an empty string' do
+        expect(@transaction.balance_value).to eq ''
+      end
+    end
+
+    context 'with a balance for transaction date' do
+      before :all do
+        Balance.destroy_all
+        @balance = FactoryGirl.create :balance, date: @transaction.date
+      end
+      it 'returns a format £xx.xx' do
+        expect(@transaction.balance_value).to match(/&pound;\d*\.\d\d/)
+      end
+
+      it 'returns a value that equals the balance of the tranasction date' do
+        expect(
+          @transaction.balance_value.delete('&pound;').to_f
+        ).to eq @balance.amount.to_f
+      end
+    end
+  end
+
   describe '#explained_amount' do
     context 'no explainations' do
       before :all do
