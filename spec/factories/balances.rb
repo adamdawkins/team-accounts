@@ -2,7 +2,10 @@
 
 FactoryGirl.define do
   factory :balance do
-    date '2013-09-11'
+
+    sequence :date do |n|
+      Date.current.beginning_of_year.since n.days
+    end
     amount '100.00'
   end
 end
